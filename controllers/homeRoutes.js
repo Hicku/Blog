@@ -5,12 +5,27 @@ const withAuth = require("../utils/withAuth");
 router.get("/", withAuth, async(req, res) => {
     try {
         const postData = await Post.findAll({
-            
-        })
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [{
+                model: User,
+                attributes: ["username"]
+            },
+        ],
+    });
+
+      const post = postData.map(post => {
+        post.get({ plain: true });
+      });
+      res.render("homepage", {
+        post,
+        logged_in: req.session.logged_id
+      });
     } catch (error) {
-        
+        res.status(500).json(error)
     }
-})
+});
 
 router.get("/login", (req, res) => {
     if(req.session.logged_in) {
