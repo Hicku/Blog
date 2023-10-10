@@ -1,0 +1,30 @@
+[
+    {
+        "username": "Belrog4",
+        "first_name": "Steve",
+        "last_name": "McGruff",
+        "email": "McGruffBuff@gmail.com",
+        "password": "password123"
+    },
+    {
+        "username": "JibNib",
+        "first_name": "Phil",
+        "last_name": "Smith",
+        "email": "PS@gmail.com",
+        "password": "password1234"
+    },
+    {
+        "username": "Diver12",
+        "first_name": "Jilly",
+        "last_name": "Ray",
+        "email": "Jilly5@gmail.com",
+        "password": "password546"
+    },
+    {
+        "username": "GermanPerson123",
+        "first_name": "Amanda",
+        "last_name": "Haas",
+        "email": "IAmAmanda@gmail.com",
+        "password": "passy12"
+    }
+]
