@@ -1,5 +1,5 @@
 const loginHandler = async (e) => {
-    console.log("Handler executed")
+
     e.preventDefault();
 
     const username = document.getElementById("username").value.trim();
@@ -8,7 +8,7 @@ const loginHandler = async (e) => {
     if(username && password) {
         const options = {
             method: "POST",
-            body: JSON.stringify(username, password),
+            body: JSON.stringify({username, password}),
             headers: {"Content-Type": "application/json"}
         }
         const res = await fetch("/api/user/login", options);
@@ -21,4 +21,22 @@ const loginHandler = async (e) => {
     }
 }
 
-document.getElementById("login-form").addEventListener("submit", loginHandler)
+const handleLogout = async (e) => {
+    e.preventDefault()
+    console.log("button clicked")
+    await fetch("/api/user/logout", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+    })
+};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#logout-button").addEventListener("click", handleLogout);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".login-form").addEventListener("submit", loginHandler);
+});
+
+
