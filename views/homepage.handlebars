@@ -1,1 +1,13 @@
+{{>navbar}}
 <H1>Homepage</H1>
+
+<div>
+    {{#if posts}}
+        {{#each posts as |post|}}
+        {{> post}}
+        {{/each}}
+      {{else}}
+        <p>"You have no posts"</p>  
+    {{/if}}
+
+</div>
