@@ -6,12 +6,14 @@ const loginHandler = async (e) => {
     const password = document.getElementById("password").value.trim();
 
     if(username && password) {
-        const options = {
-            method: "POST",
-            body: JSON.stringify({username, password}),
-            headers: {"Content-Type": "application/json"}
-        }
-        const res = await fetch("/api/user/login", options);
+
+        const res = await fetch("/api/user/login", 
+            {
+                method: "POST",
+                body: JSON.stringify({username, password}),
+                headers: {"Content-Type": "application/json"}
+            }
+        )
 
         if(res.ok) {
             document.location.replace("/")
@@ -20,6 +22,8 @@ const loginHandler = async (e) => {
         }
     }
 }
+
+
 
 const handleLogout = async (e) => {
     e.preventDefault()
@@ -32,11 +36,9 @@ const handleLogout = async (e) => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#logout-button").addEventListener("click", handleLogout);
-});
-
-document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".login-form").addEventListener("submit", loginHandler);
 });
 
-
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#logout-button").addEventListener("click", handleLogout);
+});
