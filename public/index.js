@@ -26,14 +26,14 @@ const loginHandler = async (e) => {
 
 
 const handleLogout = async (e) => {
-    e.preventDefault()
-    console.log("button clicked")
+    e.preventDefault();
+    console.log("button clicked");
     await fetch("/api/user/logout", {
         method: "POST",
-        headers: {"Content-Type":"application/json"},
-    })
+        headers: { "Content-Type": "application/json" },
+    });
+    document.location.replace("/login");
 };
-
 
 document.getElementById("logout-button").addEventListener("click", handleLogout);
 document.getElementById("login-form").addEventListener("submit", loginHandler);
