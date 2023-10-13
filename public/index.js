@@ -35,10 +35,10 @@ const handleLogout = async (e) => {
 };
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".login-form").addEventListener("submit", loginHandler);
-});
+document.getElementById("logout-button").addEventListener("click", handleLogout);
+document.getElementById("login-form").addEventListener("submit", loginHandler);
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#logout-button").addEventListener("click", handleLogout);
-});
+
+
+
+

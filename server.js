@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 const helpers = require("./utils/helpers");
 
 app.use(express.json());
-express.urlencoded({extended : true});
+app.use(express.urlencoded({extended : true}));
 app.use(express.static(path.join(__dirname, "public")));
 
 const hbs = exphbs.create({ helpers })
