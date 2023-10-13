@@ -1,7 +1,9 @@
+
 const loginHandler = async (e) => {
 
     e.preventDefault();
 
+    console.log("button clicked")
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -27,7 +29,7 @@ const loginHandler = async (e) => {
 
 const handleLogout = async (e) => {
     e.preventDefault();
-    console.log("button clicked");
+    console.log("button clicked")
     await fetch("/api/user/logout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,8 +37,38 @@ const handleLogout = async (e) => {
     document.location.replace("/login");
 };
 
+const handleRegister = async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("reg-username").value.trim();
+    const email = document.getElementById("reg-email").value.trim();
+    const first_name = document.getElementById("reg-fname").value.trim();
+    const last_name = document.getElementById("reg-lname").value.trim();
+    const password = document.getElementById("reg-password").value.trim();
+
+    try {
+        const response = await fetch("/api/user/", {
+            method: "POST",
+            body: JSON.stringify({ username, email, first_name, last_name, password }),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (response.ok) {
+            document.location.replace("/");
+        } else {
+            alert("Registration failed. Please try again.");
+        }
+    } catch (error) {
+        console.error("An error occurred during registration:", error);
+        alert("Registration failed. Please try again.");
+    }
+};
+
+
 document.getElementById("logout-button").addEventListener("click", handleLogout);
-document.getElementById("login-form").addEventListener("submit", loginHandler);
+document.getElementById("register-button").addEventListener("click", handleRegister)
+document.getElementById("login-form").addEventListener("click", loginHandler);
+
+
 
 
 
