@@ -13,15 +13,15 @@ const loginHandler = async (e) => {
                 body: JSON.stringify({username, password}),
                 headers: {"Content-Type": "application/json"}
             }
-        )
+        );
 
         if(res.ok) {
             document.location.replace("/")
         } else {
             alert(res.statusText)
-        }
-    }
-}
+        };
+    };
+};
 
 
 const loginButton = document.getElementById("login-button");
