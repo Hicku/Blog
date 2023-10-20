@@ -1,17 +1,21 @@
 const router = require("express").Router();
 const { Post } = require("../../models");
+const withAuth = require("../../utils/withAuth");
 
 router.post("/")
 
 // Route to get all posts
-router.get("/posts", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
     try {
-        const posts = await Post.findAll();
-        res.json(posts);
+        const postData = await Post.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+        res.status(200).json(postData);
+        
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to fetch posts" });
+        res.status(400).json(error)   
     }
-});
+})
 
 module.exports = router;
