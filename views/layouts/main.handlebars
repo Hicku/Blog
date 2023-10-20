@@ -6,8 +6,9 @@
     <title>Bloggin'</title>
 </head>
 <body>
-    {{>navbar}}
+    {{>navbar logged_in=logged_in}}
     {{{ body }}}
+    <script src="/logout.js"></script>
     <script src="/index.js"></script>
 </body>
 </html>

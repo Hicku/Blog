@@ -1,3 +1,10 @@
-<div>
-    <button id="logout-button">logout</button>
-</div>
+
+<nav class="navbar navbar-light bg-light d-flex justify-content-around">
+    {{#if logged_in}}
+        <button id="logout-button">Logout</button>
+    {{else}}
+        <a href="login">Login</a>
+        <a href="register">Register</a>
+    {{/if}}
+   
+</nav>

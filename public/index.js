@@ -1,4 +1,13 @@
 
+const newPostHanlder = async (e) => {
+    e.preventDefault();
+
+    document.getElementById("new-post-title").value.trim();
+    document.getElementById("new-post-text").value.trim();
+
+    const res = await fetch("api/user/post", {
+
+
 const loginHandler = async (e) => {
 
     e.preventDefault();
@@ -32,10 +41,11 @@ const handleLogout = async (e) => {
     console.log("button clicked")
     await fetch("/api/user/logout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({username, password}),
+        headers: {"Content-Type": "application/json"}
     });
-    document.location.replace("/login");
 };
+
 
 const handleRegister = async (e) => {
     e.preventDefault();
