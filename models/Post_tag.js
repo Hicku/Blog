@@ -1,18 +1,21 @@
 const { Model, DataTypes } = require("sequelize")
 const sequelize = require("../config/connection")
 
-class Like extends Model {
+class Post_tag extends Model {
 
 }
 
-Like.init(
+Post_tag.init(
     {
-        user_id: {
+        id: {
             type: DataTypes.INTEGER,
-            references: {
-                model : "user",
-                key: "id",
-            },
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        comment_text: {
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
         image_id: {
             type: DataTypes.INTEGER,
@@ -28,11 +31,18 @@ Like.init(
                 key: "id",
             },
         },
+        tag_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model : "Tag",
+                key: "id",
+            },
+        },
     }, {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: "like"
+        modelName: "post_tag"
 });
 
-module.exports = Like
+module.exports = Post_tag

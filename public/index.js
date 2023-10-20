@@ -26,6 +26,27 @@ if (newPostButton) {
     newPostButton.addEventListener("click", newPostHanlder);
 }
 
+const newCommentHandler = async (e) => {
+    e.preventDefault();
+    const comment_text = document.getElementById("new-comment-text").value.trim();
+
+    try {
+        const res = await fetch("/api/comment", {
+            method: "POST",
+            body: JSON.stringify({ comment_text }),
+            headers: { "Content-Type": "application/json" },
+        });
+        if (res.ok) {
+            window.location.reload();
+        } else {
+            alert(response.statusText);
+        }
+    } catch (error) {
+        console.error("An error occurred during new comment:", error);
+        alert("New comment failed. Please try again.");
+    };
+};
+
 
 
 

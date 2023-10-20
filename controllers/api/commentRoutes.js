@@ -1,19 +1,18 @@
 const router = require("express").Router();
-const { Post } = require("../../models");
+const { Comment } = require("../../models");
 const withAuth = require("../../utils/withAuth");
 
-// Route to get all posts
 router.post("/", withAuth, async (req, res) => {
     try {
-        const postData = await Post.create({
+        const commentData = await Comment.create({
             ...req.body,
             user_id: req.session.user_id,
         });
-        res.status(200).json(postData);
+        res.status(200).json(commentData);
         
     } catch (error) {
         res.status(400).json(error)   
     }
-})
+});
 
 module.exports = router;
