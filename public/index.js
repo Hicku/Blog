@@ -26,14 +26,16 @@ if (newPostButton) {
     newPostButton.addEventListener("click", newPostHanlder);
 }
 
+// Function for handling the comments
+
 const newCommentHandler = async (e) => {
     e.preventDefault();
-    const comment_text = document.getElementById("new-comment-text").value.trim();
-
+    const post_id = e.target.closest(".post").dataset.id;
+    const comment_text = document.getElementById("comment-text").value.trim();
     try {
         const res = await fetch("/api/comment", {
             method: "POST",
-            body: JSON.stringify({ comment_text }),
+            body: JSON.stringify({ comment_text, post_id}),
             headers: { "Content-Type": "application/json" },
         });
         if (res.ok) {
@@ -48,5 +50,7 @@ const newCommentHandler = async (e) => {
 };
 
 
-
-
+const newCommentButton = document.getElementById("comment-button");
+if(newCommentButton){
+    newCommentButton.addEventListener("click", newCommentHandler);
+}
