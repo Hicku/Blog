@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post } = require("../models");
+const { User, Post, Comment } = require("../models");
 const withAuth = require("../utils/withAuth");
 
 router.get("/", withAuth, async (req, res) => {
@@ -12,10 +12,14 @@ router.get("/", withAuth, async (req, res) => {
                 model: User,
                 attributes: ["username"],
             }],
+            include: [{
+                model: Comment,
+            }],
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
         res.render("homepage", {
+            user: req.session.user,
             posts,
             logged_in: req.session.logged_in,
         });

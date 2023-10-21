@@ -30,8 +30,8 @@ if (newPostButton) {
 
 const newCommentHandler = async (e) => {
     e.preventDefault();
-    const post_id = e.target.closest(".post").dataset.id;
-    const comment_text = document.getElementById("comment-text").value.trim();
+    const post_id = e.target.closest(".post").getAttribute("data-post-id");
+    const comment_text = e.target.parentElement.querySelector("textarea").value.trim();
     try {
         const res = await fetch("/api/comment", {
             method: "POST",
@@ -50,7 +50,8 @@ const newCommentHandler = async (e) => {
 };
 
 
-const newCommentButton = document.getElementById("comment-button");
-if(newCommentButton){
-    newCommentButton.addEventListener("click", newCommentHandler);
-}
+const commentButtons = document.querySelectorAll(".comment-button");
+
+commentButtons.forEach((button) => {
+    button.addEventListener("click", newCommentHandler);
+});
