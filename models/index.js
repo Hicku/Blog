@@ -10,7 +10,7 @@ const Tag = require("./Tag");
 
 
 
-// post relationships
+// // post relationships
 
 User.hasMany(Post, {
     foreignKey: "user_id",
@@ -22,7 +22,7 @@ Post.belongsTo(User, {
 });
 
 
-// Image relationships
+// // Image relationships
 
 User.hasMany(Image, {
     foreignKey: "user_id",
@@ -33,9 +33,9 @@ Image.belongsTo(User, {
     onDelete: "CASCADE"
 });
 
-// Like relationships
+// // Like relationships
 
-// Image to like
+// // Image to like
 
 Image.hasMany(Likes, {
     foreignKey: "image_id",
@@ -46,7 +46,7 @@ Likes.belongsTo(Image, {
     onDelete: "CASCADE"
 });
 
-// User to like
+// // User to like
 
 User.hasMany(Likes, {
     foreignKey: "user_id",
@@ -58,7 +58,7 @@ Likes.belongsTo(User, {
 });
 
 
-// post to like
+// // post to like
 
 Post.hasMany(Likes, {
     foreignKey: "post_id",
@@ -70,9 +70,9 @@ Likes.belongsTo(Post, {
 });
 
 
-// Comment relationships
+// // Comment relationships
 
-// Image to comment
+// // Image to comment
 
 Image.hasMany(Comment, {
     foreignKey: "image_id",
@@ -83,7 +83,7 @@ Comment.belongsTo(Image, {
     onDelete: "CASCADE"
 });
 
-// User to comment
+// // User to comment
 
 User.hasMany(Comment, {
     foreignKey: "user_id",
@@ -95,7 +95,7 @@ Comment.belongsTo(User, {
 });
 
 
-// post to comment
+// // post to comment
 
 Post.hasMany(Comment, {
     foreignKey: "post_id",
@@ -106,9 +106,9 @@ Comment.belongsTo(Post, {
     onDelete: "CASCADE"
 });
 
-// Post tag relationships
+// // Post tag relationships
 
-// Image to Post tag
+// // Image to Post tag
 
 Image.hasMany(Post_tag, {
     foreignKey: "image_id",
@@ -142,7 +142,7 @@ Post_tag.belongsTo(Post, {
     onDelete: "CASCADE"
 });
 
-// follow relationships
+// // follow relationships
 
 User.hasMany(Follow, {
     foreignKey: "follower_id",
@@ -165,8 +165,5 @@ Follow.belongsTo(User, {
 
 
 
-
-
-
-module.exports = { User, Post, Comment, Follow, Image, Likes, Post_tag, Tag }
+module.exports = { User, Post, Comment, Follow, Image, Likes }
 

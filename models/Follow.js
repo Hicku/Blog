@@ -29,7 +29,7 @@ Follow.init(
         indexes: [
                     {
                         unique: true,
-                        fields: ["follow_id", "followee_id"],
+                        fields: ["follower_id", "followee_id"],
                     },
                 ],
         }

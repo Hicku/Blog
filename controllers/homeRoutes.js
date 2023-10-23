@@ -1,11 +1,8 @@
 const router = require("express").Router();
-const { User, Post, Comment, Likes } = require("../models");
+const { User, Post, Comment } = require("../models");
 const withAuth = require("../utils/withAuth");
 
-router.get("/", (req, res) => {
-    res.render("homepage");
-    return;
-});
+
 
 router.get("/dashboard", withAuth, async (req, res) => {
     try {
@@ -19,10 +16,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
             }],
             include: [{
                 model: Comment,
-                include: [{ model: User }],
-            }],
-            include: [{
-                model: Likes,
                 include: [{ model: User }],
             }],
         });

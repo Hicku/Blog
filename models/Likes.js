@@ -32,7 +32,7 @@ Likes.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: "likes",
+        modelName: "like",
         indexes: [
             {
                 unique: true,
