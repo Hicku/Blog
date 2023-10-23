@@ -2,7 +2,12 @@ const router = require("express").Router();
 const { User, Post, Comment, Likes } = require("../models");
 const withAuth = require("../utils/withAuth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", (req, res) => {
+    res.render("homepage");
+    return;
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
             where: {
@@ -23,7 +28,7 @@ router.get("/", withAuth, async (req, res) => {
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
-        res.render("homepage", {
+        res.render("dashboard", {
             user: req.session.user,
             posts,
             logged_in: req.session.logged_in,
@@ -36,9 +41,8 @@ router.get("/", withAuth, async (req, res) => {
 
 
 router.get("/login", (req, res) => {
-    console.log("logged_in:", req.session.logged_in);
     if (req.session.logged_in) {
-        res.redirect("/");
+        res.redirect("/dashboard");
         return;
     }
     res.render("login");
@@ -46,7 +50,7 @@ router.get("/login", (req, res) => {
 
 router.get("/register", (req, res) => {
     if (req.session.logged_in) {
-        res.redirect("/");
+        res.redirect("/dashboard");
         return;
     }
     res.render("register");

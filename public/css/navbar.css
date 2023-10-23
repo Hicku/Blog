@@ -4,13 +4,12 @@
 
 .flexbox-items {
     display: flex;
-    background-color: yellow;
     justify-content: end;
 }
 
-/* .navbar-div {
+.navbar-div {
     background-color: brown;
-} */
+}
 
 .links {
     background-color: sandybrown;

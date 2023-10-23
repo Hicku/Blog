@@ -1,5 +1,5 @@
-// New post handler
 
+// New post handler
 const newPostHanlder = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
@@ -12,7 +12,7 @@ const newPostHanlder = async (e) => {
             headers: { "Content-Type": "application/json" },
         });
         if (res.ok) {
-            window.location.replace('/')
+            window.location.replace('/dashboard')
         } else {
             alert(response.statusText);
         }
@@ -58,28 +58,36 @@ commentButtons.forEach((button) => {
     button.addEventListener("click", newCommentHandler);
 });
 
+const postElements = document.querySelectorAll(".post");
+postElements.forEach((postElement) => {
+const post_id = postElement.getAttribute("data-post-id");
+const likesCountKey = `likesCount_${post_id}`;
+if (!localStorage.getItem(likesCountKey)) {
+    localStorage.setItem(likesCountKey, '0');
+}
+});
 
 // Like handler
-
 const likeHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const post_id = e.target.closest(".post").getAttribute("data-post-id");
     try {
+        // Send the like request
         const res = await fetch("/api/likes", {
             method: "POST",
             body: JSON.stringify({ post_id }),
             headers: { "Content-Type": "application/json" },
         });
+
         if (res.ok) {
-            const likesCountElement = e.target.closest(".post").querySelector(".likes-count");
-            let currentLikes = parseInt(likesCountElement.textContent);
-            currentLikes++;
-            likesCountElement.textContent = currentLikes;
+            const likesCountKey = `likesCount_${post_id}`;
+            const likesCount = parseInt(localStorage.getItem(likesCountKey)) || 0;
+            localStorage.setItem(likesCountKey, (likesCount + 1).toString());
         } else {
-            alert(res.statusText); 
+            alert(res.statusText);
         }
     } catch (error) {
-        console.error("An error occurred during new comment:", error);
+        console.error("An error occurred during liking:", error);
     }
 }
 
@@ -89,5 +97,3 @@ const likeButtons = document.querySelectorAll(".like-button");
 likeButtons.forEach((button) => {
     button.addEventListener("click", likeHandler);
 });
-
-

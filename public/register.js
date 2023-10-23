@@ -14,7 +14,7 @@ const handleRegister = async (e) => {
         });
 
         if (response.ok) {
-            document.location.replace("/");
+            document.location.replace("/dashboard");
         } else {
             alert("Registration failed. Please try again.");
         }
