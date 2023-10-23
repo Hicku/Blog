@@ -1,0 +1,21 @@
+.links {
+    border: thick solid;
+}
+
+.flexbox-items {
+    display: flex;
+    background-color: yellow;
+    justify-content: end;
+}
+
+/* .navbar-div {
+    background-color: brown;
+} */
+
+.links {
+    background-color: sandybrown;
+}
+
+.buttons {
+    flex-grow: 1;
+}

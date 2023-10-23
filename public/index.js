@@ -55,3 +55,13 @@ const commentButtons = document.querySelectorAll(".comment-button");
 commentButtons.forEach((button) => {
     button.addEventListener("click", newCommentHandler);
 });
+
+const likeHandler = () => {
+    
+}
+
+const likeButtons = document.querySelectorAll(".like-button");
+
+likeButtons.forEach((button) => {
+    button.addEventListener("click", likeHandler);
+});

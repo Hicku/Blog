@@ -1,10 +1,19 @@
-
-<nav class="navbar navbar-light bg-light d-flex justify-content-around">
-    {{#if logged_in}}
-        <button id="logout-button">Logout</button>
-    {{else}}
-        <a href="login">Login</a>
-        <a href="register">Register</a>
-    {{/if}}
-   
+<nav class="navbar-div">
+    <div>
+        {{#if logged_in}}
+        <div class="logout-div" class="buttons">
+            <button id="logout-button">Logout</button>
+        </div>
+        {{else}}
+        <div class="flexbox-items">
+            <div class="login-div" class="buttons">
+                <a href="login" class="links">Login</a>
+            </div>
+            <div class="register-div" class="buttons">
+                <a href="register" class="links">Register</a>
+            </div>
+        </div>
+        {{/if}}
+    </div>
 </nav>
+
