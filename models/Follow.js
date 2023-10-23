@@ -27,12 +27,12 @@ Follow.init(
         underscored: true,
         modelName: "follow",
         indexes: [
-          {
-            unique: true,
-            fields: ["follow_id", "followee_id"],
-          },
-        ],
-      }
+                    {
+                        unique: true,
+                        fields: ["follow_id", "followee_id"],
+                    },
+                ],
+        }
     );
 
 module.exports = Follow

@@ -3,7 +3,7 @@ const Post = require("./Post");
 const Comment = require("./Comment");
 const Follow = require("./Follow");
 const Image = require("./Image");
-const Like = require("./Like");
+const Likes = require("./Likes");
 const Post_tag = require("./Post_tag");
 const Tag = require("./Tag");
 
@@ -37,22 +37,22 @@ Image.belongsTo(User, {
 
 // Image to like
 
-Image.hasMany(Like, {
+Image.hasMany(Likes, {
     foreignKey: "image_id",
 });
 
-Like.belongsTo(Image, {
+Likes.belongsTo(Image, {
     foreignKey: "image_id",
     onDelete: "CASCADE"
 });
 
 // User to like
 
-User.hasMany(Like, {
+User.hasMany(Likes, {
     foreignKey: "user_id",
 });
 
-Like.belongsTo(User, {
+Likes.belongsTo(User, {
     foreignKey: "user_id",
     onDelete: "CASCADE"
 });
@@ -60,11 +60,11 @@ Like.belongsTo(User, {
 
 // post to like
 
-Post.hasMany(Like, {
+Post.hasMany(Likes, {
     foreignKey: "post_id",
 });
 
-Like.belongsTo(Post, {
+Likes.belongsTo(Post, {
     foreignKey: "post_id",
     onDelete: "CASCADE"
 });
@@ -168,5 +168,5 @@ Follow.belongsTo(User, {
 
 
 
-module.exports = { User, Post, Comment, Follow, Image, Like, Post_tag, Tag }
+module.exports = { User, Post, Comment, Follow, Image, Likes, Post_tag, Tag }
 

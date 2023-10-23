@@ -1,3 +1,5 @@
+// New post handler
+
 const newPostHanlder = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
@@ -26,7 +28,7 @@ if (newPostButton) {
     newPostButton.addEventListener("click", newPostHanlder);
 }
 
-// Function for handling the comments
+// New comment hanlder
 
 const newCommentHandler = async (e) => {
     e.preventDefault();
@@ -56,12 +58,36 @@ commentButtons.forEach((button) => {
     button.addEventListener("click", newCommentHandler);
 });
 
-const likeHandler = () => {
-    
+
+// Like handler
+
+const likeHandler = async (e) => {
+    e.preventDefault()
+    const post_id = e.target.closest(".post").getAttribute("data-post-id");
+    try {
+        const res = await fetch("/api/likes", {
+            method: "POST",
+            body: JSON.stringify({ post_id }),
+            headers: { "Content-Type": "application/json" },
+        });
+        if (res.ok) {
+            const likesCountElement = e.target.closest(".post").querySelector(".likes-count");
+            let currentLikes = parseInt(likesCountElement.textContent);
+            currentLikes++;
+            likesCountElement.textContent = currentLikes;
+        } else {
+            alert(res.statusText); 
+        }
+    } catch (error) {
+        console.error("An error occurred during new comment:", error);
+    }
 }
 
 const likeButtons = document.querySelectorAll(".like-button");
 
+
 likeButtons.forEach((button) => {
     button.addEventListener("click", likeHandler);
 });
+
+
