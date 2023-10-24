@@ -57,4 +57,25 @@ router.post("/logout", (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+    try {
+        const userId = req.params.id; 
+
+        const userData = await User.findOne({
+            where: { id: userId }, 
+        });
+
+        if (!userData) {
+            res
+                .status(404)
+                .json({ message: "User not found, please try again" });
+            return;
+        }
+
+        res.status(200).json(userData);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
 module.exports = router;

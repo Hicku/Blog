@@ -58,42 +58,34 @@ commentButtons.forEach((button) => {
     button.addEventListener("click", newCommentHandler);
 });
 
-const postElements = document.querySelectorAll(".post");
-postElements.forEach((postElement) => {
-const post_id = postElement.getAttribute("data-post-id");
-const likesCountKey = `likesCount_${post_id}`;
-if (!localStorage.getItem(likesCountKey)) {
-    localStorage.setItem(likesCountKey, '0');
-}
-});
 
-// Like handler
+
 const likeHandler = async (e) => {
     e.preventDefault();
-    const post_id = e.target.closest(".post").getAttribute("data-post-id");
+    const postElement = e.target.closest(".post");
+    const post_id = postElement.getAttribute("data-post-id");
     try {
-        // Send the like request
         const res = await fetch("/api/likes", {
             method: "POST",
             body: JSON.stringify({ post_id }),
             headers: { "Content-Type": "application/json" },
         });
-
         if (res.ok) {
-            const likesCountKey = `likesCount_${post_id}`;
-            const likesCount = parseInt(localStorage.getItem(likesCountKey)) || 0;
-            localStorage.setItem(likesCountKey, (likesCount + 1).toString());
+            const responseData = await res.json();
+            console.log(responseData);
+            const updatedLikesCount = responseData.likesCount;
+            const likesCountElement = postElement.querySelector(".likes-count");
+            likesCountElement.textContent = updatedLikesCount; 
         } else {
             alert(res.statusText);
         }
     } catch (error) {
         console.error("An error occurred during liking:", error);
     }
-}
+};
 
 const likeButtons = document.querySelectorAll(".like-button");
-
-
 likeButtons.forEach((button) => {
     button.addEventListener("click", likeHandler);
 });
+
