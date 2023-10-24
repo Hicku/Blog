@@ -60,6 +60,8 @@ commentButtons.forEach((button) => {
 
 
 
+// Handle likes
+
 const likeHandler = async (e) => {
     e.preventDefault();
     const postElement = e.target.closest(".post");
@@ -72,10 +74,13 @@ const likeHandler = async (e) => {
         });
         if (res.ok) {
             const responseData = await res.json();
-            console.log(responseData);
             const updatedLikesCount = responseData.likesCount;
+
+            const likesCountKey = `likesCount_${post_id}`;
+            localStorage.setItem(likesCountKey, updatedLikesCount);
+
             const likesCountElement = postElement.querySelector(".likes-count");
-            likesCountElement.textContent = updatedLikesCount; 
+            likesCountElement.textContent = localStorage.getItem(likesCountKey)
         } else {
             alert(res.statusText);
         }
@@ -84,8 +89,23 @@ const likeHandler = async (e) => {
     }
 };
 
+const updateLikesCount = () => {
+    const likeButtons = document.querySelectorAll(".like-button");
+    likeButtons.forEach((button) => {
+        const postElement = button.closest(".post");
+        const post_id = postElement.getAttribute("data-post-id");
+        const likesCountKey = `likesCount_${post_id}`;
+        const likesCount = localStorage.getItem(likesCountKey);
+        if (likesCount !== null) {
+            const likesCountElement = postElement.querySelector(".likes-count");
+            likesCountElement.textContent = likesCount;
+        }
+    });
+};
+
+updateLikesCount();
+
 const likeButtons = document.querySelectorAll(".like-button");
 likeButtons.forEach((button) => {
     button.addEventListener("click", likeHandler);
 });
-
