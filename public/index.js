@@ -86,7 +86,7 @@ const likeHandler = async (e) => {
         }
     } catch (error) {
         console.error("An error occurred during liking:", error);
-    }
+    };
 };
 
 const updateLikesCount = () => {
@@ -99,7 +99,7 @@ const updateLikesCount = () => {
         if (likesCount !== null) {
             const likesCountElement = postElement.querySelector(".likes-count");
             likesCountElement.textContent = likesCount;
-        }
+        };
     });
 };
 
@@ -109,3 +109,27 @@ const likeButtons = document.querySelectorAll(".like-button");
 likeButtons.forEach((button) => {
     button.addEventListener("click", likeHandler);
 });
+
+
+// Follow Handler 
+
+const followHandler = async (e) => {
+    e.preventDefault();
+    const followButton = document.querySelector(".follow-button");
+
+    try {
+        const res = await fetch("/api/follow", {
+            method: "POST",
+            body: JSON.stringify({ follower_id, followee_id }),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if(res.ok) {
+
+        }
+        
+    } catch (err) {
+        
+    };
+
+};
