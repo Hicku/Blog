@@ -125,7 +125,7 @@ const followHandler = async (e) => {
         });
 
         if(res.ok) {
-
+            window.location.reload()
         }
         
     } catch (err) {

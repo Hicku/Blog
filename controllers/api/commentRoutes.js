@@ -19,28 +19,6 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// Get all comments
 
-router.get("/", async (req, res) => {
-  try {
-    const comments = await Comment.findAll({
-      include: [
-        {
-          model: Post,
-        },
-        {
-          model: User,
-        },
-        {
-          model: Likes,
-        }
-      ],
-    });
-    res.status(200).json(comments);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
-  }
-});
 
 module.exports = router;

@@ -1,6 +1,8 @@
+
 <div class="post" data-post-id="{{id}}">
     <div>
         <div>
+            <h3>{{user.username}}</h3>
             <span>{{post_title}}</span>
             <p>{{text}}</p>
         </div>
@@ -11,19 +13,7 @@
     </div>
     <div class="comment-section">
         <h3>Leave a comment:</h3>
-        <div>
-            {{#if comments}}
-                {{#each comments as |comment|}}
-                    <div class="comment">
-                        <h3>{{comment.user.username}}</h3>
-                        <p>{{comment.comment_text}}</p>
-                        <p>{{comment.createdAt}}</p>
-                    </div>
-                {{/each}}
-            {{else}}
-                <p>"You have no comments"</p>  
-            {{/if}}
-        </div>
+            {{>comment}}
         <form>
             <textarea name="comment" id="comment-text" placeholder="Write your comment here"></textarea>
             <button type="submit" class="comment-button">Submit</button>
