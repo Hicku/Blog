@@ -142,3 +142,35 @@ const followButton = document.querySelector(".follow-button");
 if (followButton) {
     followButton.addEventListener("click", followHandler);
 }
+
+
+// Search Handler
+
+const searchHandler = async (e) => {
+    e.preventDefault();
+    const searchInput = document.querySelector(".search-input").value.trim();
+    console.log(searchInput);
+    try {
+        const res = await fetch(`/api/search/${searchInput}`, {
+            method: "GET",
+        });
+
+        if (res.ok) {
+            const userData = await res.json();
+            if (userData.id) {
+                window.location.href = `/profile/${userData.id}`;
+            } else {
+                console.log("User not found");
+            }
+        } else {
+            console.error("Request not successful");
+        }
+    } catch (error) {
+        console.error("An error occurred during search:", error);
+    }
+};
+
+const searchButton = document.querySelector(".search-button") 
+if (searchButton) {
+    searchButton.addEventListener("click", searchHandler); 
+}

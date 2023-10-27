@@ -5,12 +5,12 @@
                 <div class="logout-div" class="buttons">
                     <button id="logout-button" class="buttons">Logout</button>
                 </div>
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit">Submit</button>
+                <form id="search-form" onsubmit="return false;"> 
+                    <input class="search-input" type="text" placeholder="Search.." name="search">
+                    <button class="search-button" type="submit">Submit</button>
+                    <div class="search-results-container"></div>
                 </form>
         {{else}}
-        
                 <div class="login-div" class="buttons">
                     <a href="login" class="links">Login</a>
                 </div>
@@ -21,4 +21,3 @@
         {{/if}}
     </div>
 </nav>
-

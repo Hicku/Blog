@@ -21,6 +21,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
+            collate: 'utf8mb4_general_ci',
         },
         first_name: {
             type: DataTypes.STRING,
@@ -57,6 +58,16 @@ User.init(
         freezeTableName: true,
         underscored: true,
         modelName: "user"
+});
+
+User.addScope("usernameSearch", (value) => {
+    return {
+        where: {
+            username: {
+                [sequelize.Op.iLike]: value,
+            },
+        },
+    };
 });
 
 module.exports = User
