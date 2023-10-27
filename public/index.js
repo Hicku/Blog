@@ -1,5 +1,6 @@
 
 // New post handler
+
 const newPostHanlder = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
@@ -28,7 +29,7 @@ if (newPostButton) {
     newPostButton.addEventListener("click", newPostHanlder);
 }
 
-// New comment hanlder
+// New comment handler
 
 const newCommentHandler = async (e) => {
     e.preventDefault();
@@ -60,7 +61,7 @@ commentButtons.forEach((button) => {
 
 
 
-// Handle likes
+// Likes handler
 
 const likeHandler = async (e) => {
     e.preventDefault();
@@ -115,21 +116,29 @@ likeButtons.forEach((button) => {
 
 const followHandler = async (e) => {
     e.preventDefault();
-    const followButton = document.querySelector(".follow-button");
-
+    const followButtonElement = e.target.closest(".follow-button-element");
+    const follower_id = followButtonElement.getAttribute("data-follower-id");
+    const followee_id = followButtonElement.getAttribute("data-followee-id");
+    console.log(`FOLLOW ID: ${follower_id}`, `FOLLOWee ID: ${followee_id}`, "follow button clicked")
+    
     try {
         const res = await fetch("/api/follow", {
             method: "POST",
             body: JSON.stringify({ follower_id, followee_id }),
             headers: { "Content-Type": "application/json" },
         });
+    
+        if (res.ok) {
 
-        if(res.ok) {
-            window.location.reload()
+        } else {
+            console.error("Request not successful");
         }
-        
     } catch (err) {
-        
-    };
-
+        console.error("An error occurred during follow request", err);
+    } 
 };
+
+const followButton = document.querySelector(".follow-button");
+if (followButton) {
+    followButton.addEventListener("click", followHandler);
+}

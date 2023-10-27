@@ -1,9 +1,18 @@
 <h1>Profile</h1>
-<div data-user-id="{{user.id}}">
-    <div>{{user.id}}</div>
-    <button class="follow-button">Follow</button>
-</div>
 
+<div>
+    <div class="follow-button-element" 
+        data-follower-id={{follower_id}} 
+        data-followee-id={{followee_id}} 
+        >
+
+        <button class="follow-button">Follow</button>
+    </div>
+    <div>
+        <span class="follows-count">Followers: {{followerCount}}</span>
+        <span class="following-count">Following: {{followerCount}}</span>
+    </div>
+</div>
 
 <div>
     {{#if posts}}
@@ -11,7 +20,7 @@
         {{> post}}
         {{/each}}
     {{else}}
-        <p>"They have no posts"</p>  
+        <p>"They have no posts"</p>
     {{/if}}
-
-</div> <dir>
+</div>
+   

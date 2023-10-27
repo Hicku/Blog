@@ -148,7 +148,7 @@ User.hasMany(Follow, {
     foreignKey: "follower_id",
 });
 
-Follow.belongsTo(Follow, {
+Follow.belongsTo(User, {
     foreignKey: "follower_id",
     onDelete: "CASCADE"
 });
@@ -165,5 +165,5 @@ Follow.belongsTo(User, {
 
 
 
-module.exports = { User, Post, Comment, Follow, Image, Likes }
+module.exports = { User, Post, Comment, Follow, Image, Likes, Post_tag, Tag }
 
