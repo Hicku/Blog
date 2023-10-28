@@ -5,6 +5,9 @@
             <h3>{{user.username}}</h3>
             <span>{{post_title}}</span>
             <p>{{text}}</p>
+            {{#each tags}}
+                <span class="tag"></span>
+            {{/each}}
         </div>
     </div>
     <div>

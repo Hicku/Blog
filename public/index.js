@@ -5,7 +5,7 @@ const newPostHanlder = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
     const text = document.getElementById("new-post-content").value.trim();
-
+    console.log("button clicked!");
     try {
         const res = await fetch("/api/post", {
             method: "POST",
@@ -13,7 +13,7 @@ const newPostHanlder = async (e) => {
             headers: { "Content-Type": "application/json" },
         });
         if (res.ok) {
-            window.location.replace('/dashboard')
+            window.location.reload();
         } else {
             alert(response.statusText);
         }
@@ -23,11 +23,59 @@ const newPostHanlder = async (e) => {
     };
 };
 
+// Tag handler
+
+const tagHandler = async (e) => {
+    e.preventDefault();
+    console.log("button clicked");
+    const tag_name = document.querySelector(".tag-input").value.trim();
+    const post_id = e.target.closest(".post").getAttribute("data-post-id");
+
+    const res = await fetch(`/api/tag/${tag_name}`, {
+        method: "GET",
+    });
+
+    if (!res.ok) {
+        const res2 = await fetch("/api/tag/", {
+            method: "POST",
+            body: JSON.stringify({ tag_name }),
+            headers: { "Content-Type": "application/json" },
+        });
+        
+        if (res2.ok) {
+            
+        } else {
+            alert(res.statusText);
+        };
+    } else {
+        const res3 = await fetch("/api/post_tag", {
+            method: "POST",
+            body: JSON.stringify({ tag_name, tag_id, post_id }),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (res3.ok) {
+
+        } else {
+            alert(res.statusText);
+        }
+    };
+};
+
+
+
+
 const newPostButton = document.getElementById("new-post-button");
 
 if (newPostButton) {
     newPostButton.addEventListener("click", newPostHanlder);
 }
+
+if (newPostButton) {
+    newPostButton.addEventListener("click", tagHandler);
+}
+
+
 
 // New comment handler
 
@@ -149,7 +197,6 @@ if (followButton) {
 const searchHandler = async (e) => {
     e.preventDefault();
     const searchInput = document.querySelector(".search-input").value.trim();
-    console.log(searchInput);
     try {
         const res = await fetch(`/api/search/${searchInput}`, {
             method: "GET",
@@ -174,3 +221,4 @@ const searchButton = document.querySelector(".search-button")
 if (searchButton) {
     searchButton.addEventListener("click", searchHandler); 
 }
+

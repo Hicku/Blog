@@ -13,10 +13,6 @@ Post_tag.init(
             primaryKey: true,
             autoIncrement: true
         },
-        comment_text: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
         image_id: {
             type: DataTypes.INTEGER,
             references: {
