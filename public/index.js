@@ -1,98 +1,119 @@
-const handlePostAndTag = async (e) => {
+const postHandler = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
     const text = document.getElementById("new-post-content").value.trim();
-    const tag_name = document.querySelector(".tag-input").value.trim();
 
     try {
-        // Check if the tag already exists
-        const tagRes = await fetch(`/api/tag/${tag_name}`, {
-            method: "GET",
-        });
+            const postRes = await fetch("/api/post", {
+                method: "POST",
+                body: JSON.stringify({ post_title, text }),
+                headers: { "Content-Type": "application/json" },
+            });
 
-        if (tagRes.ok) {
-            const tagData = await tagRes.json();
-
-            if (tagData && tagData.id) {
-                // Tag exists, use its data to create post_tag
-                const postRes = await fetch("/api/post", {
-                    method: "POST",
-                    body: JSON.stringify({ post_title, text }),
-                    headers: { "Content-Type": "application/json" },
-                });
-
-                // Create post tag
-                if (postRes.ok) {
-                    const postData = await postRes.json();
-                    const tag_id = tagData.id;
-                    const post_id = postData.id;
-                    const postTagRes = await fetch("/api/post_tag/", {
-                        method: "POST",
-                        body: JSON.stringify({ tag_id, post_id }),
-                        headers: { "Content-Type": "application/json" },
-                    });
-
-                    if (postTagRes.ok) {
-                        window.location.reload();
-                    }
+            if (postRes.ok) {
+                window.location.reload();
                 }
-            } else {
-                // Tag doesn't exist, create a new tag
-                const newTagRes = await fetch("/api/tag/", {
-                    method: "POST",
-                    body: JSON.stringify({ tag_name }),
-                    headers: { "Content-Type": "application/json" },
-                });
-
-                if (newTagRes.ok) {
-                    // New tag is created, use data to create post_tag
-                    const tagRes2 = await fetch(`/api/tag/${tag_name}`, {
-                        method: "GET",
-                    });
-
-                    // Create post
-
-                    if (tagRes2.ok) {
-                        const newTagData = await tagRes2.json();
-                        console.log(newTagData);
-                        const tag_id = newTagData.id;
-                        const postRes = await fetch("/api/post", {
-                            method: "POST",
-                            body: JSON.stringify({ post_title, text }),
-                            headers: { "Content-Type": "application/json" },
-                        });
-                        
-                        // Create post tag
-
-                        if (postRes.ok) {
-                            const postData = await postRes.json();
-                            console.log(postData);
-                            console.log(`tagId: ${tag_id}`)
-                            const post_id = postData.id;
-                            const postTagRes = await fetch("/api/post_tag/", {
-                                method: "POST",
-                                body: JSON.stringify({ tag_id, post_id }),
-                                headers: { "Content-Type": "application/json" },
-                            });
-    
-                            if (postTagRes.ok) {
-                                window.location.reload();
-                            }
-                        }
-                    }
-                }
-            }
-        }
     } catch (error) {
-        console.error("An error occurred during post and tag handling:", error);
-        alert("Post and tag creation failed. Please try again.");
+        console.error("An error occurred during post handling:", error);
+        alert("Post failed. Please try again.");
     }
 };
+
+// const handlePostAndTag = async (e) => {
+//     e.preventDefault();
+//     const post_title = document.getElementById("new-post-title").value.trim();
+//     const text = document.getElementById("new-post-content").value.trim();
+//     const tag_name = document.querySelector(".tag-input").value.trim();
+
+//     try {
+//         // Check if the tag already exists
+//         const tagRes = await fetch(`/api/tag/${tag_name}`, {
+//             method: "GET",
+//         });
+
+//         if (tagRes.ok) {
+//             const tagData = await tagRes.json();
+
+//             if (tagData && tagData.id) {
+//                 // Tag exists, use its data to create post_tag
+//                 const postRes = await fetch("/api/post", {
+//                     method: "POST",
+//                     body: JSON.stringify({ post_title, text }),
+//                     headers: { "Content-Type": "application/json" },
+//                 });
+
+//                 // Create post tag
+//                 if (postRes.ok) {
+//                     const postData = await postRes.json();
+//                     const tag_id = tagData.id;
+//                     const post_id = postData.id;
+//                     const postTagRes = await fetch("/api/post_tag/", {
+//                         method: "POST",
+//                         body: JSON.stringify({ tag_id, post_id }),
+//                         headers: { "Content-Type": "application/json" },
+//                     });
+
+//                     if (postTagRes.ok) {
+//                         window.location.reload();
+//                     }
+//                 }
+//             } else {
+//                 // Tag doesn't exist, create a new tag
+//                 const newTagRes = await fetch("/api/tag/", {
+//                     method: "POST",
+//                     body: JSON.stringify({ tag_name }),
+//                     headers: { "Content-Type": "application/json" },
+//                 });
+
+//                 if (newTagRes.ok) {
+//                     // New tag is created, use data to create post_tag
+//                     const tagRes2 = await fetch(`/api/tag/${tag_name}`, {
+//                         method: "GET",
+//                     });
+
+//                     // Create post
+
+//                     if (tagRes2.ok) {
+//                         const newTagData = await tagRes2.json();
+//                         console.log(newTagData);
+//                         const tag_id = newTagData.id;
+//                         const postRes = await fetch("/api/post", {
+//                             method: "POST",
+//                             body: JSON.stringify({ post_title, text }),
+//                             headers: { "Content-Type": "application/json" },
+//                         });
+                        
+//                         // Create post tag
+
+//                         if (postRes.ok) {
+//                             const postData = await postRes.json();
+//                             console.log(postData);
+//                             console.log(`tagId: ${tag_id}`)
+//                             const post_id = postData.id;
+//                             const postTagRes = await fetch("/api/post_tag/", {
+//                                 method: "POST",
+//                                 body: JSON.stringify({ tag_id, post_id }),
+//                                 headers: { "Content-Type": "application/json" },
+//                             });
+    
+//                             if (postTagRes.ok) {
+//                                 window.location.reload();
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     } catch (error) {
+//         console.error("An error occurred during post and tag handling:", error);
+//         alert("Post and tag creation failed. Please try again.");
+//     }
+// };
 
 const newPostButton = document.getElementById("new-post-button");
 
 if (newPostButton) {
-    newPostButton.addEventListener("click", handlePostAndTag);
+    newPostButton.addEventListener("click", postHandler);
 }
 
 // New comment handler

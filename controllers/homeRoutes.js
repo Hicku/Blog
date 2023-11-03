@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { request } = require("express");
-const { User, Post, Comment, Likes, Follow, Post_tag, Tag } = require("../models");
+const { User, Post, Comment, Likes, Follow } = require("../models");
 const withAuth = require("../utils/withAuth");
 
 router.get("/", withAuth, async (req, res) => {
@@ -28,10 +28,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
                 {
                     model: Comment,
                     include: [{ model: User }],
-                },
-                {
-                    model: Post_tag,
-                    include: [{ model: Tag }],
                 },
             ],
         });
@@ -91,10 +87,6 @@ router.get("/profile/:id", withAuth, async (req, res) => {
                 {
                     model: Comment,
                     include: [{ model: User }],
-                },
-                {
-                    model: Post_tag,
-                    include: [{ model: Tag }],
                 },
             ],
         });

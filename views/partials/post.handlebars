@@ -5,8 +5,8 @@
             <h3>{{user.username}}</h3>
             <span>{{post_title}}</span>
             <p>{{text}}</p>
-            {{#each tags}}
-                <span class="tag"></span>
+            {{#each post_tags as |post_tag|}}
+                <span class="tag">{{post_tag.tag.tag_name}}</span>
             {{/each}}
         </div>
     </div>
@@ -22,5 +22,7 @@
             <button type="submit" class="comment-button">Submit</button>
         </form>
     </div>
+    <pre>
+</pre>
 </div>
 

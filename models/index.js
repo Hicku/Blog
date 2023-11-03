@@ -4,8 +4,6 @@ const Comment = require("./Comment");
 const Follow = require("./Follow");
 const Image = require("./Image");
 const Likes = require("./Likes");
-const Post_tag = require("./Post_tag");
-const Tag = require("./Tag");
 
 
 
@@ -106,41 +104,6 @@ Comment.belongsTo(Post, {
     onDelete: "CASCADE"
 });
 
-// // Post tag relationships
-
-// // Image to Post tag
-
-Image.hasMany(Post_tag, {
-    foreignKey: "image_id",
-});
-
-Post_tag.belongsTo(Image, {
-    foreignKey: "image_id",
-    onDelete: "CASCADE"
-});
-
-// User to post tag
-
-Tag.hasMany(Post_tag, {
-    foreignKey: "tag_id",
-});
-
-Post_tag.belongsTo(Tag, {
-    foreignKey: "tag_id",
-    onDelete: "CASCADE"
-});
-
-
-// post to post tag
-
-Post.hasMany(Post_tag, {
-    foreignKey: "post_id",
-});
-
-Post_tag.belongsTo(Post, {
-    foreignKey: "post_id",
-    onDelete: "CASCADE"
-});
 
 // // follow relationships
 
@@ -165,5 +128,5 @@ Follow.belongsTo(User, {
 
 
 
-module.exports = { User, Post, Comment, Follow, Image, Likes, Post_tag, Tag }
+module.exports = { User, Post, Comment, Follow, Image, Likes }
 
