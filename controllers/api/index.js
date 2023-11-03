@@ -6,7 +6,7 @@ const likeRoutes = require("./likeRoutes");
 const followRoutes = require("./followRoutes");
 const searchRoutes = require("./searchRoutes");
 const tagRoutes = require("./tagRoutes");
-const postTagRoutes = require("./post_tagRoutes");
+const postTagRoutes = require("./postTagRoutes");
 
 router.use("/user", userRoutes);
 router.use("/post", postRoutes);

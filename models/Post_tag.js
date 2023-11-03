@@ -13,15 +13,9 @@ Post_tag.init(
             primaryKey: true,
             autoIncrement: true
         },
-        image_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model : "image",
-                key: "id",
-            },
-        },
         post_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model : "post",
                 key: "id",
@@ -29,6 +23,7 @@ Post_tag.init(
         },
         tag_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model : "tag",
                 key: "id",

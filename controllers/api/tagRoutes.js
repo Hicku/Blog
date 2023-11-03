@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.get = ("/:tag_name", async (req, res) => {
+router.get ("/:tag_name", async (req, res) => {
     try {
         const tagData = await Tag.findOne({
             where: { tag_name: req.params.tag_name },

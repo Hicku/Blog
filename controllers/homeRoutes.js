@@ -28,7 +28,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
                 {
                     model: Comment,
                     include: [{ model: User }],
-                }
+                },
+                {
+                    model: Post_tag,
+                    include: [{ model: Tag }],
+                },
             ],
         });
 

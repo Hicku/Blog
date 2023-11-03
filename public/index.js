@@ -1,79 +1,120 @@
-
-// New post handler
-
-const newPostHanlder = async (e) => {
+const handlePostAndTag = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
     const text = document.getElementById("new-post-content").value.trim();
-    console.log("button clicked!");
+    const tag_name = document.querySelector(".tag-input").value.trim();
+
     try {
-        const res = await fetch("/api/post", {
+        const postRes = await fetch("/api/post", {
             method: "POST",
             body: JSON.stringify({ post_title, text }),
             headers: { "Content-Type": "application/json" },
         });
-        if (res.ok) {
-            window.location.reload();
-        } else {
-            alert(response.statusText);
-        }
-    } catch (error) {
-        console.error("An error occurred during new post:", error);
-        alert("New post failed. Please try again.");
-    };
-};
 
-// Tag handler
+        if (postRes.ok) {
+           const postData = await postRes.json();
+            const tagRes = await fetch("/api/tag/", {
+                method: "POST",
+                body: JSON.stringify({ tag_name }),
+                headers: { "Content-Type": "application/json" },
+            });
 
-const tagHandler = async (e) => {
-    e.preventDefault();
-    console.log("button clicked");
-    const tag_name = document.querySelector(".tag-input").value.trim();
-    const post_id = e.target.closest(".post").getAttribute("data-post-id");
+            if (tagRes.ok) {
+                const tagRes2 = await fetch(`/api/tag/${tag_name}`, {
+                    method: "GET",
+                });
 
-    const res = await fetch(`/api/tag/${tag_name}`, {
-        method: "GET",
-    });
+                if (tagRes2.ok) {
+                    const tagData = await tagRes2.json();
+                    const tag_id = tagData.id;
+                    const post_id = postData.id;
+                    const postTagRes = await fetch("/api/post_tag/", {
+                        method: "POST",
+                        body: JSON.stringify({ tag_id, post_id }),
+                        headers: { "Content-Type": "application/json" },
+                    });
 
-    if (!res.ok) {
-        const res2 = await fetch("/api/tag/", {
-            method: "POST",
-            body: JSON.stringify({ tag_name }),
-            headers: { "Content-Type": "application/json" },
-        });
-        
-        if (res2.ok) {
-            
-        } else {
-            alert(res.statusText);
+                    if (postTagRes.ok) {
+                        window.location.reload();
+                    };
+
+                };
+            };
         };
-    } else {
-        const res3 = await fetch("/api/post_tag", {
-            method: "POST",
-            body: JSON.stringify({ tag_name, tag_id, post_id }),
-            headers: { "Content-Type": "application/json" },
-        });
-
-        if (res3.ok) {
-
-        } else {
-            alert(res.statusText);
-        }
+    } catch (error) {
+        console.error("An error occurred during post and tag handling:", error);
+        alert("Post and tag creation failed. Please try again.");
     };
 };
-
-
-
 
 const newPostButton = document.getElementById("new-post-button");
 
 if (newPostButton) {
-    newPostButton.addEventListener("click", newPostHanlder);
+    newPostButton.addEventListener("click", handlePostAndTag);
 }
 
-if (newPostButton) {
-    newPostButton.addEventListener("click", tagHandler);
-}
+
+// const newPostHanlder = async (e) => {
+//     e.preventDefault();
+//     const post_title = document.getElementById("new-post-title").value.trim();
+//     const text = document.getElementById("new-post-content").value.trim();
+//     try {
+//         const res = await fetch("/api/post", {
+//             method: "POST",
+//             body: JSON.stringify({ post_title, text }),
+//             headers: { "Content-Type": "application/json" },
+//         });
+//         if (res.ok) {
+//             window.location.reload();
+//         } else {
+//             alert(response.statusText);
+//         }
+//     } catch (error) {
+//         console.error("An error occurred during new post:", error);
+//         alert("New post failed. Please try again.");
+//     };
+// };
+
+// const tagHandler = async (e) => {
+//     e.preventDefault();
+//     const tag_name = document.querySelector(".tag-input").value.trim();
+//     const post_id = e.target.closest(".post").getAttribute("data-post-id");
+
+//     const res = await fetch("/api/tag/", {
+//         method: "POST",
+//         body: JSON.stringify({ tag_name }),
+//         headers: { "Content-Type": "application/json" },
+//     });
+
+//     if (res.ok) {
+//         const res2 = await fetch(`/api/tag/${tag_name}`, {
+//         method: "GET",
+//     });
+
+//     if (res2.ok) {
+//         const tagData = await res2.json();
+//         const tag_id = tagData.id;
+//         const tag_name = tagData.tag_name;
+//         console.log(`tag id: ${tag_id}`)
+//         console.log(`tag name: ${tag_name}`)
+//         console.log(tagData)
+
+//     }
+// };
+// };
+
+
+
+
+// const newPostButton = document.getElementById("new-post-button");
+
+// if (newPostButton) {
+//     newPostButton.addEventListener("click", newPostHanlder);
+// }
+
+// if (newPostButton) {
+//     newPostButton.addEventListener("click", tagHandler);
+// }
 
 
 
