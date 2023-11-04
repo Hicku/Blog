@@ -1,20 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .links {
     border: thick solid;
 }
 
-.flexbox-items {
+.flexbox-div {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+}
+.flexbox-div-logout {
+    background-color: black;
+}
+
+.flexbox-items-navbar-right {
     display: flex;
     justify-content: end;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    height: 60px;
+    padding-right: 40px;
+}
+.flexbox-items-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    height: 60px;
+    padding-left: 40px;
+}
+
+.flexbox-items-logout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    height: 60px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.nav-buttons-loggedout {
+    display: flex;
+    gap: 10px;
+}
+
+.logout-flex {
+    display: flex;
 }
 
 .navbar-div {
-    background-color: brown;
+    height: 60px;
 }
 
-.links {
-    background-color: sandybrown;
+#logout-button {
+    cursor: pointer;
+    color: rgb(137, 141, 154);
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+    cursor:grab/pointer;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
 }
 
-.buttons {
-    flex-grow: 1;
+.nav-buttons {
+    cursor: pointer;
+    color: rgb(137, 141, 154);
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+    cursor:grab/pointer;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.search-button {
+    color: rgb(137, 141, 154);
+    background: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logo {
+    color: rgb(255, 100, 45);
 }

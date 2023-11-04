@@ -1,23 +1,42 @@
-<nav class="navbar-div">
-    <div>
-        {{#if logged_in}}
-            <div class="flexbox-items">
-                <div class="logout-div" class="buttons">
-                    <button id="logout-button" class="buttons">Logout</button>
+<div class="main-div-nav">
+    <nav class="navbar-div">
+        <div>
+            {{#if logged_in}}
+            <div class="flexbox-div">
+                <div class="flexbox-items-navbar-left">
+                    <div class="logo">
+                        Hello
+                    </div>
+                    <form id="search-form" onsubmit="return false;"> 
+                        <input class="search-input" type="text" placeholder="Search.." name="search">
+                        <button class="search-button" class="flex-item-nav" type="submit">Submit</button>
+                        <div class="search-results-container"></div>
+                    </form>
                 </div>
-                <form id="search-form" onsubmit="return false;"> 
-                    <input class="search-input" type="text" placeholder="Search.." name="search">
-                    <button class="search-button" type="submit">Submit</button>
-                    <div class="search-results-container"></div>
-                </form>
-        {{else}}
-                <div class="login-div" class="buttons">
-                    <a href="login" class="links">Login</a>
-                </div>
-                <div class="register-div" class="buttons">
-                    <a href="register" class="links">Register</a>
+                <div class="flexbox-items-navbar-right">
+                    <div class="logout-div" class="buttons">
+                        <button id="logout-button" class="flex-item-nav" class="nav-buttons">Logout</button>
+                    </div>
                 </div>
             </div>    
-        {{/if}}
-    </div>
-</nav>
+            {{else}}
+                <div class="flexbox-div-logout">
+                    <div class="flexbox-items-logout">
+                        <div class="logo">
+                            hello
+                        </div>
+                    <div class="nav-buttons-loggedout">
+                        <div class="login-div" class="buttons">
+                        <a class="nav-buttons" class="login-button" class="flex-item-nav" href="login" class="links">Login</a>
+                        </div>
+                    <div class="register-div" class="buttons">
+                        <a href="register" class="nav-buttons"class="flex-item-nav" class="links">Register</a>
+                        </div> 
+                    </div>
+                </div>
+                </div>
+                
+            {{/if}}
+        </div>
+    </nav>
+</div>

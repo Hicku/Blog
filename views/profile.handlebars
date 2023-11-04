@@ -1,5 +1,9 @@
 <h1>Profile</h1>
 
+{{#if (isCurrentUser req.session.id req.params.id)}}
+    <p>Welcome to your profile!</p>
+{{/if}}
+
 <div>
     <div class="follow-button-element" 
         data-follower-id={{follower_id}} 
@@ -10,7 +14,7 @@
     </div>
     <div>
         <span class="follows-count">Followers: {{followerCount}}</span>
-        <span class="following-count">Following: {{followerCount}}</span>
+        <span class="following-count">Following: {{followingCount}}</span>
     </div>
 </div>
 
@@ -23,4 +27,3 @@
         <p>"They have no posts"</p>
     {{/if}}
 </div>
-   

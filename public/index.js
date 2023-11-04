@@ -216,7 +216,7 @@ const followHandler = async (e) => {
         });
     
         if (res.ok) {
-
+            window.location.reload();
         } else {
             console.error("Request not successful");
         }
@@ -229,6 +229,14 @@ const followButton = document.querySelector(".follow-button");
 if (followButton) {
     followButton.addEventListener("click", followHandler);
 }
+
+const followButtons = document.querySelectorAll(".follow-button");
+if(followButtons) {
+    followButtons.forEach((button) => {
+    button.addEventListener("click", followHandler);
+    });
+}
+
 
 
 // Search Handler

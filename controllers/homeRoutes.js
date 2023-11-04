@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { request } = require("express");
 const { User, Post, Comment, Likes, Follow } = require("../models");
 const withAuth = require("../utils/withAuth");
+const  { isCurrentUser } = require("../utils/helpers")
 
 router.get("/", withAuth, async (req, res) => {
     if (req.session.logged_in) {
@@ -100,6 +101,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             followerCount,
             followingCount,
             posts,
+            isCurrentUser,
             logged_in: req.session.logged_in,
         });
     } catch (error) {
