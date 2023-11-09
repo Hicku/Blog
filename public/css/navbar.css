@@ -63,7 +63,7 @@ body {
 
 #logout-button {
     cursor: pointer;
-    color: rgb(137, 141, 154);
+    color: greenyellow;
     background: transparent;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
@@ -87,8 +87,9 @@ body {
     font-size: 14px;
 }
 
+
 .search-button {
-    color: rgb(137, 141, 154);
+    color: greenyellow;
     background: transparent;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;

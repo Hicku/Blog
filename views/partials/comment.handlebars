@@ -1,13 +1,13 @@
 <div>
-            {{#if comments}}
-                {{#each comments as |comment|}}
-                    <div class="comment">
-                        <h3>{{comment.user.username}}</h3>
-                        <p>{{comment.comment_text}}</p>
-                        <p>{{comment.createdAt}}</p>
-                    </div>
-                {{/each}}
-            {{else}}
-                <p>"You have no comments"</p>  
-            {{/if}}
+    {{#if comments}}
+        {{#each comments as |comment|}}
+            <div class="comment">
+                <h3>{{comment.user.username}}</h3>
+                <p>{{comment.comment_text}}</p>
+                <p>{{comment.createdAt}}</p>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>"You have no comments"</p>  
+    {{/if}}
 </div>
