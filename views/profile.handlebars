@@ -1,43 +1,72 @@
 <h1>Profile</h1>
 
-{{#if logged_in}}
-    <p>Logged in as</p>
-{{else}}
-    <p>Not logged in</p>
-{{/if}}
 
-{{#if (isCurrentUser req.session.id req.params.id)}}
+{{#if (is_creator)}}
     <p>Welcome to your profile!</p>
 {{/if}}
 
-<div>
-    <h2>{{user.username}}</h2>
-</div>
+<div class="main-div-profile">
+    <div>
+        <div>
+        <h2>{{currentProfile.username}}</h2>
+    </div>
 
-<div>
-    <div class="follow-button-element" 
+    <div>
+        <div class="follow-button-element" 
         data-follower-id={{follower_id}} 
         data-followee-id={{followee_id}} 
         >
 
-        <button class="follow-button">Follow</button>
+            <button class="follow-button">Follow</button>
+        </div>
+        <div>
+            <span class="follows-count">Followers: {{followerCount}}</span>
+            <span class="following-count">Following: {{followingCount}}</span>
+        </div>
+
+    {{#if (is_creator)}}
+        {{>newPost}}
+    {{/if}}
+
+    <div>
+        {{#if posts }}
+            {{#each posts as |post|}}
+            {{> post}}
+            {{/each}}
+        {{else}}
+            <p>"They have no posts"</p>
+        {{/if}}
+    </div>
     </div>
     <div>
-        <span class="follows-count">Followers: {{followerCount}}</span>
-        <span class="following-count">Following: {{followingCount}}</span>
+        <h2>{{currentProfile.username}}</h2>
     </div>
-</div>
 
-{{#if (isCurrentUser req.session.id req.params.id)}}
-    {{>newPost}}
-{{/if}}
+    <div>
+        <div class="follow-button-element" 
+        data-follower-id={{follower_id}} 
+        data-followee-id={{followee_id}} 
+        >
 
-<div>
-    {{#if posts }}
-        {{#each posts as |post|}}
-        {{> post}}
-        {{/each}}
-    {{else}}
-        <p>"They have no posts"</p>
+            <button class="follow-button">Follow</button>
+        </div>
+        <div>
+            <span class="follows-count">Followers: {{followerCount}}</span>
+            <span class="following-count">Following: {{followingCount}}</span>
+        </div>
+    </div>
+
+    {{#if (is_creator)}}
+        {{>newPost}}
     {{/if}}
+
+    <div>
+        {{#if posts }}
+            {{#each posts as |post|}}
+            {{> post}}
+            {{/each}}
+        {{else}}
+            <p>"They have no posts"</p>
+        {{/if}}
+    </div>
 </div>

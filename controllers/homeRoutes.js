@@ -8,44 +8,10 @@ router.get("/", withAuth, async (req, res) => {
     res.render("homepage", { logged_in: req.session.logged_in });
 });
 
-router.get("/dashboard", withAuth, async (req, res) => {
-    try {
-        const postData = await Post.findAll({
-            where: {
-                user_id: req.session.user_id
-            },
-            include: [
-                {
-                    model: User,
-                    attributes: ["username"],
-                },
-                {
-                    model: Likes,
-                },
-                {
-                    model: Comment,
-                    include: [{ model: User }],
-                },
-            ],
-        });
-
-        const posts = postData.map((post) => post.get({ plain: true }));
-
-
-        res.render("dashboard", {
-            user: req.session.user,
-            posts,
-            logged_in: req.session.logged_in,
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json(error);
-    }
-});
-
 router.get("/profile/:id", withAuth, async (req, res) => {
     try {
         const userId = req.params.id;
+        console.log(userId);
 
         const user = await User.findByPk(userId);
 
@@ -57,6 +23,11 @@ router.get("/profile/:id", withAuth, async (req, res) => {
         const follower_id = req.params.id;
         const followingCount = await Follow.count({ where: { follower_id } });
         const followerCount = await Follow.count({ where: { followee_id } });
+        const currentProfile = user.get({ plain: true });
+        
+        const is_creator = function (currentUserId, profileUserId) {
+            return currentProfile.id === req.session.user_id;
+        }
 
         const postData = await Post.findAll({
             where: {
@@ -77,17 +48,17 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             ],
         });
 
-        console.log(postData);
-
         const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render("profile", {
+            userId,
             followee_id: req.params.id,
             follower_id: req.session.user_id,
-            user: req.session.user,
+            currentProfile,
             followerCount,
             followingCount,
             posts,
+            is_creator,
             isCurrentUser,
             logged_in: req.session.logged_in,
         });
