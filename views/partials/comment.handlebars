@@ -1,10 +1,14 @@
 <div>
-    {{#if comments}}
+    <button id="toggle-comments" data-target="commentsContainer-{{comment.id}}">Toggle Comments</button>
+    <div id="comments-container" id="commentsContainer-{{comment.id}}">
+        {{#if comments}}
         {{#each comments as |comment|}}
             <div class="comment">
                 <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
-                <p>{{comment.comment_text}}</p>
+                <p class="comment-text">{{comment.comment_text}}</p>
             </div>
+            <hr class="hr-comment">
         {{/each}}
-    {{/if}}
+        {{/if}}
+    </div>
 </div>

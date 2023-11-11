@@ -3,17 +3,13 @@ body {
     padding: 0;
 }
 
-.links {
-    border: thick solid;
-}
-
 .flexbox-div {
     display: flex;
     justify-content: space-between;
-    background-color:  #181818;
+    background-color:  #333;
 }
 .flexbox-div-logout {
-    background-color:  #181818;
+    background-color:  #333;
 }
 
 .flexbox-items-navbar-right {
@@ -80,6 +76,7 @@ body {
     font-size: 14px;
     color: rgb(255, 100, 45);
     text-decoration: none;
+    margin-left: 8px;
 }
 
 .nav-buttons {

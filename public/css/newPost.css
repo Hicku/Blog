@@ -1,9 +1,53 @@
 .new-post-inputs {
     border-radius: 4px;
     background: #333;
-    width: 70%;
+    width: 200px;
     padding: 15px 10px;
     border: 0;
     color: #FAF9F6;
     outline: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+#new-post-content {
+    width: 400px;
+}
+
+
+
+.post-elements-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 70%;
+}
+
+.main-container {
+    display: flex;
+}
+
+.post-form {
+    display: flex;
+    background-color: #333;
+}
+
+#new-post-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+}
+
+#new-post-button:hover {
+    color: rgb(255, 100, 45);
+}
+

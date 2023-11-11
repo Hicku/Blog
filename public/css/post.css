@@ -11,9 +11,45 @@
 .new-comment-input {
     border-radius: 4px;
     background: #333;
-    width: 70%;
+    width: 50%;
     padding: 15px 10px;
     border: 0;
     color: #FAF9F6;
     outline: none;
+}
+
+.hr-style {
+    margin-top: 30px;
+}
+
+.comment-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+}
+
+.comment-button:hover {
+    color: rgb(255, 100, 45);
+}
+
+.like-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+}
+
+.like-button:hover {
+    color: rgb(255, 100, 45);
 }

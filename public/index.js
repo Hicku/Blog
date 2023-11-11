@@ -269,3 +269,14 @@ if (searchButton) {
     searchButton.addEventListener("click", searchHandler); 
 }
 
+//Toggle comments handler
+
+document.getElementById('toggle-comments').addEventListener('click', function() {
+    var commentsContainer = document.getElementById('comments-container');
+    if (commentsContainer.style.display === 'none' || commentsContainer.style.display === '') {
+        commentsContainer.style.display = 'block';
+    } else {
+        commentsContainer.style.display = 'none';
+    }
+});
+

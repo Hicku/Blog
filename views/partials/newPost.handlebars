@@ -1,20 +1,22 @@
+
 <form id="post-form">
-    <div>
-        <div>
-            <label for="title">Title</label>
-            <input type="title" class="new-post-inputs" id="new-post-title">
-        </div>
-        <div>
+    <div class="main-container">
+        <div class="post-elements-container">
             <div>
-                <label for="content">Content</label>
+                <label for="title"></label>
+                <input type="title" class="new-post-inputs" id="new-post-title" placeholder="title">
             </div>
             <div>
-                <textarea type="content" class="new-post-inputs" id="new-post-content" placeholder="text"></textarea>
+                <div>
+                    <label for="content"></label>
+                </div>
+            </div> 
+            <div>
+                <textarea type="content" class="new-post-inputs" id="new-post-content" placeholder="content"></textarea>
             </div>    
-        </div> 
-        <div>
-            <button id="new-post-button">Submit</button>
-
+            <div>
+                <button id="new-post-button">Post</button>
+            </div>
         </div>
     </div>
 </form>

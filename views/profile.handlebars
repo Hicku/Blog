@@ -1,15 +1,15 @@
 {{>navbar logged_in=logged_in}}
 
 <div class="profile-data-div">
-    <h2>{{currentProfile.username}}</h2>
+    <h2 class="username-title">{{currentProfile.username}}</h2>
     <div class="follow-button-element" 
         data-follower-id={{follower_id}} 
         data-followee-id={{followee_id}}>
         <button class="follow-button">Follow</button>
     </div>
     <div>
-        <span class="follows-count">Followers: {{followerCount}}</span>
-        <span class="following-count">Following: {{followingCount}}</span>
+        <span class="counts" class="follows-count">Followers: {{followerCount}}</span>
+        <span class="counts" class="following-count">Following: {{followingCount}}</span>
     </div>
 </div>
 

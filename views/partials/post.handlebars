@@ -10,20 +10,20 @@
                 <span class="tag">{{post_tag.tag.tag_name}}</span>
             {{/each}}
         </div>
+        <div>
+            <button type="submit" class="like-button">Like</button>
+            <span class="likes-count">0</span>
+        </div>
         <h3>Leave a comment:</h3>
         <form>
-            <textarea name="comment" class="new-comment-input" placeholder="Write your comment here"></textarea>
-            <button type="submit" class="new-comment-inputs" class="comment-button">Submit</button>
+            <textarea name="comment" class="new-comment-input" placeholder="Comment..."></textarea>
+            <button type="submit"  class="comment-button">Submit</button>
         </form>
-    </div>
-    <div>
-        <button type="submit" class="like-button">Like</button>
-        <span class="likes-count">0</span>
     </div>
     <div class="comment-section">
         {{>comment}}
     </div>
-    <hr>
+    <hr class="hr-style">
 </div>
 
 
