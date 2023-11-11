@@ -1,3 +1,32 @@
-.main.div-profile {
-    background-color: #181818;
+.post-container {
+    display: flex;
+    justify-content: center;
+}
+
+.main-div-post {
+    background-color: #FAF9F6;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+
+.post-div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 800px;
+}
+
+.new-post-div {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-data-div {
+    display: flex;
+    background-color: rgb(255, 100, 45);
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
 }

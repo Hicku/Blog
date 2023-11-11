@@ -1,5 +1,5 @@
-const isCurrentUser = function (currentUserId, profileUserId) {
-    return currentUserId === profileUserId;
-};
-
-module.exports = { isCurrentUser } 
+module.exports = {
+    format_date: (date) => {
+        return date.toLocaleDateString();
+    }
+}

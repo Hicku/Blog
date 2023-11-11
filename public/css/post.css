@@ -1,0 +1,19 @@
+.post {
+    color: #181818;
+}
+
+.user-link {
+    text-decoration: none;
+    color: #181818;
+    font-weight: bold;
+}
+
+.new-comment-input {
+    border-radius: 4px;
+    background: #333;
+    width: 70%;
+    padding: 15px 10px;
+    border: 0;
+    color: #FAF9F6;
+    outline: none;
+}

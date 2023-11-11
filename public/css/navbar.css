@@ -63,7 +63,7 @@ body {
 
 #logout-button {
     cursor: pointer;
-    color: greenyellow;
+    color: rgb(255, 100, 45);
     background: transparent;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
@@ -74,9 +74,17 @@ body {
     font-size: 14px;
 }
 
+.profile-link {
+    cursor:grab/pointer;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(255, 100, 45);
+    text-decoration: none;
+}
+
 .nav-buttons {
     cursor: pointer;
-    color: greenyellow;
+    color: rgb(255, 100, 45);
     background: transparent;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
@@ -89,7 +97,7 @@ body {
 
 
 .search-button {
-    color: greenyellow;
+    color: rgb(255, 100, 45);
     background: transparent;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;

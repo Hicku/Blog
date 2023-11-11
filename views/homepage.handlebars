@@ -1,2 +1,15 @@
-<H1>Homepage</H1>
+{{>navbar logged_in=logged_in}}
 
+<div class="post-container">
+    <div class="main-div-profile">
+        <div class="post-div">
+            {{#if posts }}
+                {{#each posts as |post|}}
+                    {{> post}}
+                {{/each}}
+            {{else}}
+                <p>"They have no posts"</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
