@@ -19,6 +19,18 @@
     word-wrap: break-word;
 }
 
-#comments-container {
+.comments-container {
     display: none;
+}
+
+.toggle-comments {
+    background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  border-radius: 0;
+  appearance: none;
+    background-image: url("/resources/images/COMMENT12.png")
 }

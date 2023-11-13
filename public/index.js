@@ -271,12 +271,24 @@ if (searchButton) {
 
 //Toggle comments handler
 
-document.getElementById('toggle-comments').addEventListener('click', function() {
-    var commentsContainer = document.getElementById('comments-container');
-    if (commentsContainer.style.display === 'none' || commentsContainer.style.display === '') {
-        commentsContainer.style.display = 'block';
+const toggleCommentsHandler = async (e) => { 
+    const button = e.currentTarget;
+    const commentContainer = button.nextElementSibling;
+    console.log(commentContainer)
+
+    if (commentContainer.style.display === 'none' || commentContainer.style.display === '') {
+        commentContainer.style.display = 'block';
     } else {
-        commentsContainer.style.display = 'none';
+        commentContainer.style.display = 'none';
     }
-});
+};
+
+const toggleComments = document.querySelectorAll('.toggle-comments');
+if (toggleComments) {
+    toggleComments.forEach((button) => {
+        button.addEventListener("click", toggleCommentsHandler);
+    });
+};
+
+
 

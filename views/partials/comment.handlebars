@@ -1,14 +1,21 @@
 <div>
-    <button id="toggle-comments" data-target="commentsContainer-{{comment.id}}">Toggle Comments</button>
-    <div id="comments-container" id="commentsContainer-{{comment.id}}">
-        {{#if comments}}
-        {{#each comments as |comment|}}
-            <div class="comment">
-                <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
-                <p class="comment-text">{{comment.comment_text}}</p>
-            </div>
-            <hr class="hr-comment">
-        {{/each}}
+    <div>
+        <button class="toggle-comments">
+        </button>
+        <div class="comments-container">
+            <form>
+                    <textarea name="comment" class="new-comment-input" placeholder="Comment..."></textarea>
+                    <button type="submit"  class="comment-button">Submit</button>
+            </form>
+            {{#if comments}}
+            {{#each comments as |comment|}}
+                <div class="comment">
+                    <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
+                    <p class="comment-text">{{comment.comment_text}}</p>
+                </div>
+                <hr class="hr-comment">
+            {{/each}}
         {{/if}}
+        </div>
     </div>
 </div>
