@@ -128,6 +128,7 @@ const newCommentHandler = async (e) => {
             body: JSON.stringify({ comment_text, post_id}),
             headers: { "Content-Type": "application/json" },
         });
+
         if (res.ok) {
             window.location.reload();
         } else {
@@ -184,12 +185,13 @@ const updateLikesCount = () => {
         const post_id = postElement.getAttribute("data-post-id");
         const likesCountKey = `likesCount_${post_id}`;
         const likesCount = localStorage.getItem(likesCountKey);
-        if (likesCount !== null) {
-            const likesCountElement = postElement.querySelector(".likes-count");
-            likesCountElement.textContent = likesCount;
-        };
+
+        const likesCountElement = postElement.querySelector(".likes-count");
+        likesCountElement.textContent = likesCount !== null ? likesCount : "0";
     });
 };
+
+updateLikesCount();
 
 updateLikesCount();
 
@@ -273,7 +275,7 @@ if (searchButton) {
 
 const toggleCommentsHandler = async (e) => { 
     const button = e.currentTarget;
-    const commentContainer = button.nextElementSibling;
+    const commentContainer = button.parentNode.nextElementSibling;
     console.log(commentContainer)
 
     if (commentContainer.style.display === 'none' || commentContainer.style.display === '') {

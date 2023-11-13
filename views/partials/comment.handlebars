@@ -1,12 +1,21 @@
 <div>
     <div>
-        <button class="toggle-comments">
-        </button>
+        <div class="like-comment-buttons">
+            <div>
+                <button type="submit" class="like-button">
+                    Like
+                    <span class="likes-count">0</span>
+                </button>
+            </div>
+            <button class="toggle-comments">Comments</button>
+        </div>
         <div class="comments-container">
-            <form>
+            <div>
+                <form>
                     <textarea name="comment" class="new-comment-input" placeholder="Comment..."></textarea>
                     <button type="submit"  class="comment-button">Submit</button>
-            </form>
+                </form>
+            </div>    
             {{#if comments}}
             {{#each comments as |comment|}}
                 <div class="comment">

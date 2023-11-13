@@ -1,6 +1,6 @@
 .comment-user-details {
     text-decoration: none;
-    color: #181818;
+    color: #333;
     font-weight: bold;
     font-size: 16px;
 }
@@ -17,20 +17,54 @@
 
 .comment-text {
     word-wrap: break-word;
+    color: #333;
 }
 
 .comments-container {
     display: none;
 }
 
+.like-comment-buttons {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+
 .toggle-comments {
     background-color: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  text-align: inherit;
-  font: inherit;
-  border-radius: 0;
-  appearance: none;
-    background-image: url("/resources/images/COMMENT12.png")
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    border-radius: 0;
+    appearance: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    height: 35px;
+    padding-left: 10px;
+    background-color: #FAF9F6;
+}
+
+.toggle-comments:hover {
+    color: rgb(255, 100, 45);
+}
+
+.like-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    padding-left: 0;
+    text-align: left;
+}
+
+.like-button:hover {
+    color: rgb(255, 100, 45);
 }

@@ -1,6 +1,4 @@
-.post {
-    color: #181818;
-}
+
 
 .user-link {
     text-decoration: none;
@@ -20,6 +18,8 @@
 
 .hr-style {
     margin-top: 30px;
+    border-color: rgb(255, 100, 45);
+    height: 3px;
 }
 
 .comment-button {
@@ -38,18 +38,6 @@
     color: rgb(255, 100, 45);
 }
 
-.like-button {
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    border-radius: 4px;
-    width: 50px;
-    background-color: #FAF9F6;
-    color: #333;
-    height: 35px;
-    font-size: 15px;
-    border: 0;
-}
-
-.like-button:hover {
-    color: rgb(255, 100, 45);
+.post-title .post-text {
+    color:  #333;
 }

@@ -62,6 +62,10 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             where: {
                 user_id: req.params.id
             },
+            order: [
+                ["created_at", "DESC"],
+                [Comment, "created_at", 'DESC']
+            ],
             include: [
                 {
                     model: User,
