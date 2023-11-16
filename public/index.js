@@ -193,7 +193,7 @@ const updateLikesCount = () => {
 
 updateLikesCount();
 
-updateLikesCount();
+// updateLikesCount();
 
 const likeButtons = document.querySelectorAll(".like-button");
 likeButtons.forEach((button) => {
@@ -289,6 +289,50 @@ const toggleComments = document.querySelectorAll('.toggle-comments');
 if (toggleComments) {
     toggleComments.forEach((button) => {
         button.addEventListener("click", toggleCommentsHandler);
+    });
+};
+
+const editHandler = async (e) => {
+    e.preventDefault();
+    const editButtonElement = e.target.closest("#edit-post-button");
+
+    const post_id = editButtonElement.getAttribute("edit-post-button");
+    console.log(post_id)
+
+    const response = await fetch(`/api/post/${post_id}`, { method: "PUT" });
+
+    if (response.ok) {
+        window.location.replace(`/profile/${userData.id}`);
+    } else {
+        alert(response.statusText);
+    }
+};
+
+document.getElementById("edit-post-button").addEventListener("click", editHandler)
+
+
+
+const deleteHandler = async (e) => {
+    e.preventDefault();
+    const postElement = e.target.closest(".post");
+    const post_id = postElement.getAttribute("data-post-id");
+    console.log(post_id)
+
+    const response = await fetch(`/api/post/${post_id}`, { method: "DELETE" });
+    
+    if (response.ok) {
+        window.location.reload();
+    } else {
+        alert(response.statusText);
+    }
+};
+
+document.getElementById("delete-post-button").addEventListener("click", deleteHandler)
+
+const deletePost = document.querySelectorAll('.delete-post-button');
+if (deletePost) {
+    deletePost.forEach((button) => {
+        button.addEventListener("click", deleteHandler);
     });
 };
 

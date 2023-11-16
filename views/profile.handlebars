@@ -5,7 +5,11 @@
     <div class="follow-button-element" 
         data-follower-id={{follower_id}} 
         data-followee-id={{followee_id}}>
-        <button class="follow-button">Follow</button>
+        {{#if (is_following followed)}}
+            <button class="following-button">Following</button>
+        {{else}}
+            <button class="follow-button">Follow</button>
+        {{/if}}
     </div>
     <div>
         <span class="counts" class="follows-count">Followers: {{followerCount}}</span>
@@ -19,12 +23,14 @@
     {{/if}}
 </div>
 
+
+
 <div class="post-container">
     <div class="main-div-post">
         <div class="post-div">
             {{#if posts }}
                 {{#each posts as |post|}}
-                    {{> post}}
+                    {{> post is_current_user=is_current_user currentUserId=../currentUserId currentProfile=../currentProfile}}
                 {{/each}}
             {{else}}
                 <p>"They have no posts"</p>

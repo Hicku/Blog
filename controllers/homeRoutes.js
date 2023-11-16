@@ -44,6 +44,13 @@ router.get("/profile/:id", withAuth, async (req, res) => {
         const currentUserId = req.session.user_id;
 
         const user = await User.findByPk(userId);
+        const followed = await Follow.findOne({
+            where: {
+                followee_id: req.params.id,
+                follower_id: req.session.user_id
+            }
+        
+        })
 
         if (!user) {
             return res.status(404).send("User not found");
@@ -56,7 +63,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
         
         const is_creator = function (currentUserId, profileUserId) {
             return currentProfile.id === req.session.user_id;
-        }
+        };
 
         const postData = await Post.findAll({
             where: {
@@ -84,6 +91,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render("profile", {
+            followed,
             currentUserId,
             userId,
             followee_id: req.params.id,
@@ -93,7 +101,6 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             followingCount,
             posts,
             is_creator,
-            isCurrentUser,
             logged_in: req.session.logged_in,
         });
     } catch (error) {

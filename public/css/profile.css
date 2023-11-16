@@ -45,6 +45,26 @@
     margin-bottom: 6px;
 }
 
+.following-button {
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 4px;
+    color: rgb(255, 100, 45);
+    background-color: #333;
+    height: 35px;
+    width: 80px;
+    font-size: 15px;
+    border: 0;
+    margin-bottom: 6px;
+}
+
+.follow-button:hover {
+    color: #FAF9F6;
+}
+
+.following-button:hover {
+    color: #FAF9F6;
+}
+
 .username-title {
     font-family: Helvetica, Arial, sans-serif;
     color: #333;
@@ -53,5 +73,31 @@
 .counts {
     font-family: Helvetica, Arial, sans-serif;
     color: #333;
+}
+
+.edit-delete-buttons {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+.edit-delete-buttons:hover {
+    color: rgb(255, 100, 45);
+}
+
+.ed-de-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin-top: 10px;
+    padding-top: 50px;
 }
 
