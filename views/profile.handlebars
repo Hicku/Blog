@@ -6,9 +6,9 @@
         data-follower-id={{follower_id}} 
         data-followee-id={{followee_id}}>
         {{#if (is_following followed)}}
-            <button class="following-button">Following</button>
-        {{else}}
             <button class="follow-button">Follow</button>
+        {{else}}
+            <button class="following-button">Following</button>
         {{/if}}
     </div>
     <div>

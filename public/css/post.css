@@ -41,3 +41,40 @@
 .post-title .post-text {
     color:  #333;
 }
+
+#delete-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+#edit-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+#edit-button:hover {
+    color: rgb(255, 100, 45);
+}
+
+#delete-button:hover {
+    color: rgb(255, 100, 45);
+}

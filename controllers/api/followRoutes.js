@@ -22,21 +22,23 @@ router.post("/", withAuth, async (req, res) => {
     }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+// Delete follow
+router.delete('/delete', withAuth, async (req, res) => {
     try {
-        const postData = await Post.destroy({
-        where: {
-            followee_id: req.params.id,
-            follower_id: req.session.user_id
-        },
-    });
-        if (!postData) {
-            res.status(404).json({ message: 'No post found with this id!' });
+        const followData = await Follow.destroy({
+            where: {
+                followee_id: req.body.followee_id,
+                follower_id: req.body.follower_id
+            },
+        });
+        if (!followData) {
+            res.status(404).json({ message: 'No follow with this id!' });
             return;
-    }
-    res.status(200).json(postData);
-        } catch (err) {
-            res.status(500).json(err);
+        }
+        res.status(200).json(followData);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
     }
 });
 

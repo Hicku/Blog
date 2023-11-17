@@ -6,7 +6,7 @@ module.exports = {
         return user_id === current_user_id;
     },
     is_following: (followed_id) => {
-        return followed_id;
+        return !followed_id;
     },
 }
 

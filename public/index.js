@@ -239,6 +239,38 @@ if(followButtons) {
     });
 }
 
+// Delete follow handler
+
+const deleteFollowHandler = async (e) => {
+    e.preventDefault();
+    console.log("button clicked")
+    const followButtonElement = e.target.closest(".follow-button-element");
+    const follower_id = followButtonElement.getAttribute("data-follower-id");
+    const followee_id = followButtonElement.getAttribute("data-followee-id");
+
+    try {
+        const res = await fetch("/api/follow/delete", {
+            method: "DELETE",
+            body: JSON.stringify({ follower_id, followee_id }),
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (res.ok) {
+            window.location.reload();
+        } else {
+            alert(res.statusText);
+        }
+
+    } catch (err) {
+        console.error("An error occurred during follow request", err);
+    }
+};
+
+const followingButton = document.querySelector(".following-button");
+if (followingButton) {
+    followingButton.addEventListener("click", deleteFollowHandler);
+}
+
 
 
 // Search Handler
@@ -292,23 +324,23 @@ if (toggleComments) {
     });
 };
 
-const editHandler = async (e) => {
-    e.preventDefault();
-    const editButtonElement = e.target.closest("#edit-post-button");
+// const editHandler = async (e) => {
+//     e.preventDefault();
+//     const editButtonElement = e.target.closest("#edit-post-button");
 
-    const post_id = editButtonElement.getAttribute("edit-post-button");
-    console.log(post_id)
+//     const post_id = editButtonElement.getAttribute("edit-post-button");
+//     console.log(post_id)
 
-    const response = await fetch(`/api/post/${post_id}`, { method: "PUT" });
+//     const response = await fetch(`/api/post/${post_id}`, { method: "PUT" });
 
-    if (response.ok) {
-        window.location.replace(`/profile/${userData.id}`);
-    } else {
-        alert(response.statusText);
-    }
-};
+//     if (response.ok) {
+//         window.location.replace(`/profile/${userData.id}`);
+//     } else {
+//         alert(response.statusText);
+//     }
+// };
 
-document.getElementById("edit-post-button").addEventListener("click", editHandler)
+// document.getElementById("edit-post-button").addEventListener("click", editHandler)
 
 
 
@@ -327,14 +359,13 @@ const deleteHandler = async (e) => {
     }
 };
 
-document.getElementById("delete-post-button").addEventListener("click", deleteHandler)
-
-const deletePost = document.querySelectorAll('.delete-post-button');
-if (deletePost) {
-    deletePost.forEach((button) => {
+const deleteButton = document.querySelectorAll('.delete-post-button');
+if (deleteButton) {
+    deleteButton.forEach((button) => {
         button.addEventListener("click", deleteHandler);
     });
 };
+
 
 
 

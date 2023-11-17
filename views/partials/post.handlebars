@@ -4,8 +4,8 @@
         <div>
             {{#if (is_current_user currentUserId currentProfile.id)}}
                 <div class="ed-de-button-div">
-                    <button data-id="{{id}}" id="edit-post-button" class="edit-delete-buttons" id="edit-button">Edit</button>
-                    <button data-id="{{id}}" id="delete-post-button" class="edit-delete-buttons">Delete</button>
+                    <button data-id="{{id}}" class="edit-post-button" id="edit-button" id="edit-button">Edit</button>
+                    <button data-id="{{id}}" class="delete-post-button" id="delete-button">Delete</button>
                 </div>
             {{/if}}
             <section>
