@@ -1,3 +1,17 @@
+.post-partial-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 70%;
+}
+
+.new-post-container {
+    display: none;
+}
+
 .new-post-inputs {
     border-radius: 4px;
     background: #333;
@@ -50,3 +64,24 @@
     color: rgb(255, 100, 45);
 }
 
+
+.toggle-post-button-container {
+    background-color: aqua;
+}
+
+.toggle-new-post {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 100px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 18px;
+    border: 0;
+    
+}
+
+.toggle-new-post:hover {
+    color: rgb(255, 100, 45);
+}

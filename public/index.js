@@ -1,3 +1,5 @@
+// New post handler
+
 const postHandler = async (e) => {
     e.preventDefault();
     const post_title = document.getElementById("new-post-title").value.trim();
@@ -17,6 +19,28 @@ const postHandler = async (e) => {
         console.error("An error occurred during post handling:", error);
         alert("Post failed. Please try again.");
     }
+};
+
+// Toggler new post handler
+
+const toggleNewPostHandler = async (e) => { 
+    const button = e.currentTarget;
+    const newPostContainer = button.parentNode.nextElementSibling;
+
+    if (newPostContainer.style.display === 'none' || newPostContainer.style.display === '') {
+        newPostContainer.style.display = 'block';
+        button.textContent = "Hide"
+    } else {
+        newPostContainer.style.display = 'none';
+        button.textContent = "New post"
+    }
+};
+
+const toggleNewPost = document.querySelectorAll('.toggle-new-post');
+if (toggleNewPost) {
+    toggleNewPost.forEach((button) => {
+        button.addEventListener("click", toggleNewPostHandler);
+    });
 };
 
 // const handlePostAndTag = async (e) => {
@@ -193,8 +217,6 @@ const updateLikesCount = () => {
 
 updateLikesCount();
 
-// updateLikesCount();
-
 const likeButtons = document.querySelectorAll(".like-button");
 likeButtons.forEach((button) => {
     button.addEventListener("click", likeHandler);
@@ -300,7 +322,30 @@ const searchHandler = async (e) => {
 
 const searchButton = document.querySelector(".search-button") 
 if (searchButton) {
-    searchButton.addEventListener("click", searchHandler); 
+    searchButton.addEventListener("click", searchHandler);
+}
+
+// Toggle edit post handler
+
+const toggleEditPostHandler = async (e) => {
+    const toggleCommentsHandler = async (e) => { 
+    const button = e.currentTarget;
+    const commentContainer = button.parentNode.nextElementSibling;
+    console.log(commentContainer)
+    
+    if (commentContainer.style.display === 'none' || commentContainer.style.display === '') {
+        commentContainer.style.display = 'block';
+    } else {
+        commentContainer.style.display = 'none';
+    }
+    };
+    
+    const toggleComments = document.querySelectorAll('.toggle-comments');
+    if (toggleComments) {
+        toggleComments.forEach((button) => {
+            button.addEventListener("click", toggleCommentsHandler);
+        });
+    };
 }
 
 //Toggle comments handler
@@ -342,7 +387,7 @@ if (toggleComments) {
 
 // document.getElementById("edit-post-button").addEventListener("click", editHandler)
 
-
+// Delete post handler
 
 const deleteHandler = async (e) => {
     e.preventDefault();

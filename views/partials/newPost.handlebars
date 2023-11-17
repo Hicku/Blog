@@ -1,22 +1,33 @@
 
-<form id="post-form">
-    <div class="main-container">
-        <div class="post-elements-container">
-            <div>
-                <label for="title"></label>
-                <input type="title" class="new-post-inputs" id="new-post-title" placeholder="title">
-            </div>
-            <div>
-                <div>
-                    <label for="content"></label>
-                </div>
-            </div> 
-            <div>
-                <textarea type="content" class="new-post-inputs" id="new-post-content" placeholder="content"></textarea>
-            </div>    
-            <div>
-                <button id="new-post-button">Post</button>
-            </div>
-        </div>
+<div class="post-partial-container">
+    <div class="toggle-post-button-container">
+        <button class="toggle-new-post">New post</button>
     </div>
-</form>
+    
+    <section class="new-post-container">
+        <form id="post-form">
+            <div class="main-container">
+                <div class="post-elements-container">
+                    <div>
+                        <label for="title"></label>
+                        <input type="title" class="new-post-inputs" id="new-post-title" placeholder="title">
+                    </div>
+                    <div>
+                        <div>
+                            <label for="content"></label>
+                        </div>
+                    </div> 
+                    <div>
+                        <textarea type="content" class="new-post-inputs" id="new-post-content" placeholder="content"></textarea>
+                    </div>    
+                    <div>
+                        <button id="new-post-button">Post</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+
+
