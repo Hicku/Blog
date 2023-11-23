@@ -2,16 +2,43 @@
 <div class="post" data-post-id="{{id}}">
     <div>
         <div>
+            <div>
             {{#if (is_current_user currentUserId currentProfile.id)}}
                 <div class="ed-de-button-div">
-                    <button data-id="{{id}}" class="edit-post-button" id="edit-button" id="edit-button">Edit</button>
+                    <button data-id="{{id}}" class="edit-post-button" id="edit-button">Edit</button>
+                    {{!-- <button data-id="{{id}}" class="edit-post-button" id="edit-button" id="edit-button">Edit</button> --}}
                     <button data-id="{{id}}" class="delete-post-button" id="delete-button">Delete</button>
                 </div>
             {{/if}}
-            <section class="post-container">
-                <h4 class="post-title">{{post_title}}</h4>
-                <p class="post-text">{{text}}</p>
+            <section class="post-section">
+                <h4 class="post-title" id="postTitle">{{post_title}}</h4>
+                <p class="post-text" id="postText">{{text}}</p>
             </section>
+            <div>
+                <section class="edit-post-container">
+                    <form id="edit-post-form">
+                        <div class="main-container">
+                            <div class="post-elements-container">
+                                <div>
+                                    <label for="title"></label>
+                                    <input type="title" class="new-post-inputs" id="new-post-title" placeholder="title">
+                                </div>
+                                <div>
+                                    <div>
+                                        <label for="content"></label>
+                                    </div>
+                                </div> 
+                                <div>
+                                    <textarea type="content" class="new-post-inputs" id="new-post-content" placeholder="content"></textarea>
+                                </div>    
+                                <div>
+                                    <button id="new-post-button">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
     <div class="comment-section">

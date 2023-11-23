@@ -328,32 +328,60 @@ if (searchButton) {
 // Toggle edit post handler
 
 const toggleEditPostHandler = async (e) => {
-    const toggleCommentsHandler = async (e) => { 
-    const button = e.currentTarget;
-    const commentContainer = button.parentNode.nextElementSibling;
-    console.log(commentContainer)
+    e.preventDefault();
+    const postElement = e.target.closest(".post");
+    const post_id = postElement.getAttribute("data-post-id");
+
+    const currentTitle = document.getElementById('postTitle');
+    const currentBody = document.getElementById('postText');
+    const titleUpdate = document.createElement("input");
+    const contentUpdate = document.createElement("textarea");
+    const saveButton = document.createElement("button")
+    const updateButton = document.getElementById('edit-button')
     
-    if (commentContainer.style.display === 'none' || commentContainer.style.display === '') {
-        commentContainer.style.display = 'block';
-    } else {
-        commentContainer.style.display = 'none';
-    }
-    };
-    
-    const toggleComments = document.querySelectorAll('.toggle-comments');
-    if (toggleComments) {
-        toggleComments.forEach((button) => {
-            button.addEventListener("click", toggleCommentsHandler);
+    titleUpdate.value = currentTitle.textContent
+    contentUpdate.value = currentBody.textContent
+    titleUpdate.setAttribute("id", "titleUpdate")
+    contentUpdate.setAttribute("id", "contentUpdate")
+
+    currentTitle.replaceWith(titleUpdate)
+    currentBody.replaceWith(contentUpdate)
+    updateButton.replaceWith(saveButton)
+    saveButton.id = "save"
+    saveButton.textContent = "Save"
+
+    const saveHandler = async (event) => {
+        event.preventDefault();
+        const post_title = document.getElementById('titleUpdate').value;
+        const text = document.getElementById('contentUpdate').value;
+        console.log(post_id)
+        const response = await fetch(`/api/post/${post_id}`, {
+            method: "PUT",
+            body: JSON.stringify({ post_title, text }),   
+            headers: { "Content-Type": "application/json" },
         });
-    };
-}
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            alert(response.statusText);
+        }
+    }
+
+    document.getElementById('save').addEventListener('click', saveHandler)
+};    
+    
+    const toggleEditPost = document.querySelectorAll('.edit-post-button');
+    if (toggleEditPost) {
+        toggleEditPost.forEach((button) => {
+            button.addEventListener("click", toggleEditPostHandler);
+        });
+};
 
 //Toggle comments handler
 
 const toggleCommentsHandler = async (e) => { 
     const button = e.currentTarget;
     const commentContainer = button.parentNode.nextElementSibling;
-    console.log(commentContainer)
 
     if (commentContainer.style.display === 'none' || commentContainer.style.display === '') {
         commentContainer.style.display = 'block';
@@ -385,7 +413,7 @@ if (toggleComments) {
 //     }
 // };
 
-// document.getElementById("edit-post-button").addEventListener("click", editHandler)
+document.querySelector("edit-post-button").addEventListener("click", editHandler)
 
 // Delete post handler
 

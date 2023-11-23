@@ -78,3 +78,52 @@
 #delete-button:hover {
     color: rgb(255, 100, 45);
 }
+
+.edit-post-container {
+    display: none;
+}
+
+#titleUpdate {
+    border-radius: 4px;
+    background: #333;
+    width: 50%;
+    padding: 15px 10px;
+    border: 0;
+    color: #FAF9F6;
+    outline: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#contentUpdate {
+    border-radius: 4px;
+    background: #333;
+    width: 50%;
+    padding: 15px 10px;
+    border: 0;
+    color: #FAF9F6;
+    outline: none;
+    height: 300px;
+    width: 100%;
+}
+
+#save {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 15px;
+    border: 0;
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+
+#save:hover {
+    color: rgb(255, 100, 45);
+}
+
