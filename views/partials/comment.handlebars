@@ -24,10 +24,10 @@
                             <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
                             <section class="comment-buttons">
                                 <button class="delete-comment-button">Delete</button>
-                                <button class="edit-comment-button">Edit</button>
+                                <button class="edit-comment-button" id="editCommentButton">Edit</button>
                             </section>
                         </div>
-                        <p class="comment-text">{{comment.comment_text}}</p>
+                        <p class="comment-text" id="commentText">{{comment.comment_text}}</p>
                     </div>
                     <hr class="hr-comment">
                 {{else}}

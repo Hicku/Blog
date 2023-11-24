@@ -6,13 +6,13 @@ const postHandler = async (e) => {
     const text = document.getElementById("new-post-content").value.trim();
 
     try {
-            const postRes = await fetch("/api/post", {
+            const res = await fetch("/api/post", {
                 method: "POST",
                 body: JSON.stringify({ post_title, text }),
                 headers: { "Content-Type": "application/json" },
             });
 
-            if (postRes.ok) {
+            if (res.ok) {
                 window.location.reload();
                 }
     } catch (error) {
@@ -42,97 +42,6 @@ if (toggleNewPost) {
         button.addEventListener("click", toggleNewPostHandler);
     });
 };
-
-// const handlePostAndTag = async (e) => {
-//     e.preventDefault();
-//     const post_title = document.getElementById("new-post-title").value.trim();
-//     const text = document.getElementById("new-post-content").value.trim();
-//     const tag_name = document.querySelector(".tag-input").value.trim();
-
-//     try {
-//         // Check if the tag already exists
-//         const tagRes = await fetch(`/api/tag/${tag_name}`, {
-//             method: "GET",
-//         });
-
-//         if (tagRes.ok) {
-//             const tagData = await tagRes.json();
-
-//             if (tagData && tagData.id) {
-//                 // Tag exists, use its data to create post_tag
-//                 const postRes = await fetch("/api/post", {
-//                     method: "POST",
-//                     body: JSON.stringify({ post_title, text }),
-//                     headers: { "Content-Type": "application/json" },
-//                 });
-
-//                 // Create post tag
-//                 if (postRes.ok) {
-//                     const postData = await postRes.json();
-//                     const tag_id = tagData.id;
-//                     const post_id = postData.id;
-//                     const postTagRes = await fetch("/api/post_tag/", {
-//                         method: "POST",
-//                         body: JSON.stringify({ tag_id, post_id }),
-//                         headers: { "Content-Type": "application/json" },
-//                     });
-
-//                     if (postTagRes.ok) {
-//                         window.location.reload();
-//                     }
-//                 }
-//             } else {
-//                 // Tag doesn't exist, create a new tag
-//                 const newTagRes = await fetch("/api/tag/", {
-//                     method: "POST",
-//                     body: JSON.stringify({ tag_name }),
-//                     headers: { "Content-Type": "application/json" },
-//                 });
-
-//                 if (newTagRes.ok) {
-//                     // New tag is created, use data to create post_tag
-//                     const tagRes2 = await fetch(`/api/tag/${tag_name}`, {
-//                         method: "GET",
-//                     });
-
-//                     // Create post
-
-//                     if (tagRes2.ok) {
-//                         const newTagData = await tagRes2.json();
-//                         console.log(newTagData);
-//                         const tag_id = newTagData.id;
-//                         const postRes = await fetch("/api/post", {
-//                             method: "POST",
-//                             body: JSON.stringify({ post_title, text }),
-//                             headers: { "Content-Type": "application/json" },
-//                         });
-                        
-//                         // Create post tag
-
-//                         if (postRes.ok) {
-//                             const postData = await postRes.json();
-//                             console.log(postData);
-//                             console.log(`tagId: ${tag_id}`)
-//                             const post_id = postData.id;
-//                             const postTagRes = await fetch("/api/post_tag/", {
-//                                 method: "POST",
-//                                 body: JSON.stringify({ tag_id, post_id }),
-//                                 headers: { "Content-Type": "application/json" },
-//                             });
-    
-//                             if (postTagRes.ok) {
-//                                 window.location.reload();
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     } catch (error) {
-//         console.error("An error occurred during post and tag handling:", error);
-//         alert("Post and tag creation failed. Please try again.");
-//     }
-// };
 
 const newPostButton = document.getElementById("new-post-button");
 
@@ -171,7 +80,75 @@ commentButtons.forEach((button) => {
     button.addEventListener("click", newCommentHandler);
 });
 
+// Edit comment handler
 
+const toggleEditCommentHandler = async (e) => {
+    e.preventDefault();
+    console.log("button clicked")
+    const commentElement = e.target.closest(".comment");
+    const comment_id = commentElement.getAttribute("data-comment-id");
+
+    const currentBody = document.getElementById('commentText');
+    const contentUpdate = document.createElement("textarea");
+    const saveButton = document.createElement("button")
+    const updateButton = document.getElementById('editCommentButton')
+    
+    contentUpdate.value = currentBody.textContent
+    contentUpdate.setAttribute("id", "contentUpdateComment")
+
+    currentBody.replaceWith(contentUpdate)
+    updateButton.replaceWith(saveButton)
+    saveButton.id = "save-comment"
+    saveButton.textContent = "Save"
+
+    const saveCommentHandler = async (event) => {
+        event.preventDefault();
+        const comment_text = document.getElementById('contentUpdateComment').value;
+        console.log(`hello: ${comment_id}`)
+        const res = await fetch(`/api/comment/${comment_id}`, {
+            method: "PUT",
+            body: JSON.stringify({ comment_text }),   
+            headers: { "Content-Type": "application/json" },
+        });
+        if (res.ok) {
+            window.location.reload();
+        } else {
+            alert(res.statusText);
+        }
+    }
+
+    document.getElementById('save-comment').addEventListener('click', saveCommentHandler)
+};    
+    
+    const toggleEditComment = document.querySelectorAll('.edit-comment-button');
+    if (toggleEditComment) {
+        toggleEditComment.forEach((button) => {
+            button.addEventListener("click", toggleEditCommentHandler);
+        });
+};
+
+// delete comment handler
+const deleteCommentHandler = async (e) => {
+    e.preventDefault();
+    const commentElement = e.target.closest(".comment");
+    const comment_id = commentElement.getAttribute("data-comment-id");
+    console.log(comment_id)
+
+    const res = await fetch(`/api/comment/${comment_id}`, { method: "DELETE" });
+    
+    if (res.ok) {
+        window.location.reload();
+    } else {
+        alert(res.statusText);
+    }
+};
+
+const deleteCommentButton = document.querySelectorAll('.delete-comment-button');
+if (deleteCommentButton) {
+    deleteCommentButton.forEach((button) => {
+        button.addEventListener("click", deleteCommentHandler);
+    });
+};
 
 // Likes handler
 
@@ -179,6 +156,7 @@ const likeHandler = async (e) => {
     e.preventDefault();
     const postElement = e.target.closest(".post");
     const post_id = postElement.getAttribute("data-post-id");
+
     try {
         const res = await fetch("/api/likes", {
             method: "POST",
@@ -355,15 +333,15 @@ const toggleEditPostHandler = async (e) => {
         const post_title = document.getElementById('titleUpdate').value;
         const text = document.getElementById('contentUpdate').value;
         console.log(post_id)
-        const response = await fetch(`/api/post/${post_id}`, {
+        const res = await fetch(`/api/post/${post_id}`, {
             method: "PUT",
             body: JSON.stringify({ post_title, text }),   
             headers: { "Content-Type": "application/json" },
         });
-        if (response.ok) {
+        if (res.ok) {
             window.location.reload();
         } else {
-            alert(response.statusText);
+            alert(res.statusText);
         }
     }
 
@@ -397,23 +375,6 @@ if (toggleComments) {
     });
 };
 
-// const editHandler = async (e) => {
-//     e.preventDefault();
-//     const editButtonElement = e.target.closest("#edit-post-button");
-
-//     const post_id = editButtonElement.getAttribute("edit-post-button");
-//     console.log(post_id)
-
-//     const response = await fetch(`/api/post/${post_id}`, { method: "PUT" });
-
-//     if (response.ok) {
-//         window.location.replace(`/profile/${userData.id}`);
-//     } else {
-//         alert(response.statusText);
-//     }
-// };
-
-document.querySelector("edit-post-button").addEventListener("click", editHandler)
 
 // Delete post handler
 
@@ -424,12 +385,12 @@ const deleteHandler = async (e) => {
     const post_id = postElement.getAttribute("data-post-id");
     console.log(post_id)
 
-    const response = await fetch(`/api/post/${post_id}`, { method: "DELETE" });
+    const res = await fetch(`/api/post/${post_id}`, { method: "DELETE" });
     
-    if (response.ok) {
+    if (res.ok) {
         window.location.reload();
     } else {
-        alert(response.statusText);
+        alert(res.statusText);
     }
 };
 
