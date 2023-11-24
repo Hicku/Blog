@@ -69,3 +69,52 @@
 .like-button:hover {
     color: rgb(255, 100, 45);
 }
+
+.delete-comment-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 13px;
+    border: 0;
+    padding-left: 0;
+    text-align: left;
+    height: 10px;
+}
+
+.delete-comment-button:hover {
+    color: rgb(255, 100, 45);
+}
+
+.edit-comment-button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 50px;
+    background-color: #FAF9F6;
+    color: #333;
+    height: 35px;
+    font-size: 13px;
+    border: 0;
+    padding-left: 0;
+    text-align: left;
+    height: 10px;
+}
+
+.edit-comment-button:hover {
+    color: rgb(255, 100, 45);
+}
+
+.comment-buttons {
+    display: flex;
+    justify-content: center;
+    padding-right: 55px;
+}
+
+.content-butt-container {
+    display: flex;
+    justify-content: space-between;
+}

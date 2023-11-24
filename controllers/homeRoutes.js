@@ -65,6 +65,10 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             return currentProfile.id === req.session.user_id;
         };
 
+        const comment_creator = function (currentUserId, commentUserId) { 
+            return req.session.user_id === commentUserId;
+        }
+
         const postData = await Post.findAll({
             where: {
                 user_id: req.params.id
@@ -101,6 +105,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             followingCount,
             posts,
             is_creator,
+            comment_creator,
             logged_in: req.session.logged_in,
         });
     } catch (error) {

@@ -419,6 +419,7 @@ document.querySelector("edit-post-button").addEventListener("click", editHandler
 
 const deleteHandler = async (e) => {
     e.preventDefault();
+    console.log("button clicked")
     const postElement = e.target.closest(".post");
     const post_id = postElement.getAttribute("data-post-id");
     console.log(post_id)

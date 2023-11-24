@@ -15,14 +15,28 @@
                     <textarea name="comment" class="new-comment-input" placeholder="Comment..."></textarea>
                     <button type="submit"  class="comment-button">Submit</button>
                 </form>
-            </div>    
+            </div>
             {{#if comments}}
             {{#each comments as |comment|}}
-                <div class="comment">
-                    <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
-                    <p class="comment-text">{{comment.comment_text}}</p>
-                </div>
-                <hr class="hr-comment">
+                {{#if (is_current_user user.id ../currentUserId )}}
+                    <div class="comment" data-comment-id="{{id}}">
+                        <div class="content-butt-container">
+                            <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
+                            <section class="comment-buttons">
+                                <button class="delete-comment-button">Delete</button>
+                                <button class="edit-comment-button">Edit</button>
+                            </section>
+                        </div>
+                        <p class="comment-text">{{comment.comment_text}}</p>
+                    </div>
+                    <hr class="hr-comment">
+                {{else}}
+                    <div class="comment">
+                        <a href="/profile/{{user.id}}" class="comment-user-details">{{comment.user.username}} {{format_date comment.createdAt}}</a>
+                        <p class="comment-text">{{comment.comment_text}}</p>
+                    </div>
+                    <hr class="hr-comment">
+                {{/if}}
             {{/each}}
         {{/if}}
         </div>
