@@ -13,7 +13,6 @@ router.get("/", withAuth, async (req, res) => {
             include: [
                 {
                     model: User,
-                    include: [{ model: Follow }],
                 },
                 {
                     model: Likes,
@@ -41,48 +40,36 @@ router.get("/", withAuth, async (req, res) => {
 router.get("/profile/:id", withAuth, async (req, res) => {
     try {
         const userId = req.params.id;
-        const currentUserId = req.session.user_id;
+        const currentUserId = req.session.user_id;        
+
+        const user = await User.findByPk(userId, {
+            include: [
+                {
+                    model: User,
+                    as: "followees"
+                },
+                {
+                    model: User,
+                    as: "followers"
+                },
+            ]
+        });
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        const currentProfile = user.get({ plain: true });
         
+        console.log(currentProfile);
 
-        // const follower = await Follow.findAll({ 
-        //     where: { follower_id: userId },
-        //     include: [{
-        //         model: User,
-        //         attributes: ['username']
-        //     }]
-        // });
-
-        const follower = await sequelize.query(
-            `SELECT * FROM follow 
-            JOIN User ON Follow.follower_id = User.id 
-            WHERE followee_id = :userId`,
-            {
-                replacements: { userId: userId },
-                type: sequelize.QueryTypes.SELECT,
-            }
-        );
-
-        const followers = follower.map((follow) => follow.get({ plain: true }));
-        
-
-        const user = await User.findByPk(userId);
         const followed = await Follow.findOne({
             where: {
                 followee_id: req.params.id,
                 follower_id: req.session.user_id
             }
         
-        })
+        });
 
-        if (!user) {
-            return res.status(404).send("User not found");
-        }
-        const followee_id = req.params.id;
-        const follower_id = req.params.id;
-        const followingCount = await Follow.count({ where: { follower_id } });
-        const followerCount = await Follow.count({ where: { followee_id } });
-        const currentProfile = user.get({ plain: true });
-        
         const is_creator = function (currentUserId, profileUserId) {
             return currentProfile.id === req.session.user_id;
         };
@@ -102,7 +89,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             include: [
                 {
                     model: User,
-                    include: [{ model: Follow }],
+                    //include: [{ model: Follow }],
                 },
                 {
                     model: Likes,
@@ -118,14 +105,14 @@ router.get("/profile/:id", withAuth, async (req, res) => {
 
         res.render("profile", {
             followed,
-            followers,
+            followers: currentProfile.followees,
             currentUserId,
             userId,
             followee_id: req.params.id,
             follower_id: req.session.user_id,
             currentProfile,
-            followerCount,
-            followingCount,
+            followerCount: currentProfile.followees.length,
+            followingCount: currentProfile.followers.length,
             posts,
             is_creator,
             comment_creator,

@@ -107,25 +107,18 @@ Comment.belongsTo(Post, {
 
 // // follow relationships
 
-User.hasMany(Follow, {
+User.belongsToMany(User, {
+    through: "follow",
+    as: "followers",
     foreignKey: "follower_id",
 });
 
-Follow.belongsTo(User, {
-    foreignKey: "follower_id",
-    onDelete: "CASCADE"
-});
-
-
-User.hasMany(Follow, {
-    foreignKey: "followee_id",
-});
-
-Follow.belongsTo(User, {
+User.belongsToMany(User, {
+    through: "follow",
+    as: "followees",
     foreignKey: "followee_id",
     onDelete: "CASCADE"
 });
-
 
 
 module.exports = { User, Post, Comment, Follow, Image, Likes }

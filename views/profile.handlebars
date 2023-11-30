@@ -1,4 +1,4 @@
-{{>navbar logged_in=logged_in}}
+
 
 <div class="profile-data-div">
     <h2 class="username-title">{{currentProfile.username}}</h2>
@@ -19,8 +19,6 @@
         <button  class="following-count">Following: {{followingCount}}</span>
     </div>
 
-    <p>{{followers}}</p>
-
     <div class="follower-modal">
         <div class="modal-content">
             <div class="close-div">
@@ -30,7 +28,7 @@
                 <span>Followers</span>
                 {{#each followers as |follower|}}
                     <div class="follower-div">
-                        <a class="model-follower-list" href="/profile/{{follower.user.id}}"> {{follower.user.username}}</a>
+                        <a class="model-follower-list text-white" href="/profile/{{follower.id}}"> {{follower.username}}</a>
                     </div>
                 {{/each}}
             </div>
