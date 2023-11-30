@@ -85,25 +85,27 @@ commentButtons.forEach((button) => {
 const toggleEditCommentHandler = async (e) => {
     e.preventDefault();
     console.log("button clicked")
+
+    
     const commentElement = e.target.closest(".comment");
     const comment_id = commentElement.getAttribute("data-comment-id");
 
-    const currentBody = document.getElementById('commentText');
+    const currentBody = commentElement.querySelector('.comment-text');
     const contentUpdate = document.createElement("textarea");
     const saveButton = document.createElement("button")
-    const updateButton = document.getElementById('editCommentButton')
+    const updateButton = commentElement.querySelector('.edit-comment-button')
     
     contentUpdate.value = currentBody.textContent
-    contentUpdate.setAttribute("id", "contentUpdateComment")
+    contentUpdate.setAttribute("class", "content-update-comment")
 
     currentBody.replaceWith(contentUpdate)
     updateButton.replaceWith(saveButton)
-    saveButton.id = "save-comment"
+    saveButton.className = "save-comment"
     saveButton.textContent = "Save"
 
     const saveCommentHandler = async (event) => {
         event.preventDefault();
-        const comment_text = document.getElementById('contentUpdateComment').value;
+        const comment_text = document.querySelector('.content-update-comment').value;
         console.log(`hello: ${comment_id}`)
         const res = await fetch(`/api/comment/${comment_id}`, {
             method: "PUT",
@@ -117,7 +119,12 @@ const toggleEditCommentHandler = async (e) => {
         }
     }
 
-    document.getElementById('save-comment').addEventListener('click', saveCommentHandler)
+    const saveCommentButton = document.querySelectorAll('.save-comment');
+    if(saveCommentButton) {
+        saveCommentButton.forEach((button) => {
+            button.addEventListener("click", saveCommentHandler);
+        });
+    };
 };    
     
     const toggleEditComment = document.querySelectorAll('.edit-comment-button');
@@ -309,13 +316,14 @@ const toggleEditPostHandler = async (e) => {
     e.preventDefault();
     const postElement = e.target.closest(".post");
     const post_id = postElement.getAttribute("data-post-id");
+    
 
-    const currentTitle = document.getElementById('postTitle');
-    const currentBody = document.getElementById('postText');
+    const currentTitle = postElement.querySelector('.post-title');
+    const currentBody = postElement.querySelector('.post-text');
     const titleUpdate = document.createElement("input");
     const contentUpdate = document.createElement("textarea");
     const saveButton = document.createElement("button")
-    const updateButton = document.getElementById('edit-button')
+    const updateButton = postElement.querySelector('.edit-post-button')
     
     titleUpdate.value = currentTitle.textContent
     contentUpdate.value = currentBody.textContent
@@ -332,7 +340,6 @@ const toggleEditPostHandler = async (e) => {
         event.preventDefault();
         const post_title = document.getElementById('titleUpdate').value;
         const text = document.getElementById('contentUpdate').value;
-        console.log(post_id)
         const res = await fetch(`/api/post/${post_id}`, {
             method: "PUT",
             body: JSON.stringify({ post_title, text }),   
@@ -401,6 +408,38 @@ if (deleteButton) {
     });
 };
 
+// Follow modals handler
+
+const followModalHandler = async (e) => {
+    e.preventDefault();
+    console.log("button clicked")
+    const modal = document.querySelector('.follower-modal');
+    modal.style.display = "block";
+};
 
 
 
+document.querySelector('.follows-count').addEventListener('click', followModalHandler);
+
+
+
+const closeModalHandler = async (e) => {
+    e.preventDefault();
+    console.log("button clicked")
+    const modal = document.querySelector('.follower-modal');
+    modal.style.display = "none";
+};
+
+document.querySelector('.close-button').addEventListener('click', closeModalHandler);
+
+const modal = document.querySelector('.follower-modal');
+
+const closeOutsdieModalHandler = async (e) => {
+    window.onclick = function(e) {
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
+closeOutsdieModalHandler();

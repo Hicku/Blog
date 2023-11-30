@@ -1,6 +1,9 @@
 <div class="post" data-post-id="{{id}}">
     <div>
         <div>
+        <div class="username-div">
+            <a href="/profile/{{user.id}}" class="username-homepage">{{user.username}}</a>
+        </div>
             <section>
                 <h4 class="post-title">{{post_title}}</h4>
                 <p class="post-text">{{text}}</p>
@@ -8,7 +11,7 @@
         </div>
     </div>
     <div class="comment-section">
-        {{>comment}}
+        {{>comment is_current_user=is_current_user currentUserId=currentUserId}}
     </div> 
     <hr class="hr-style">
 </div>

@@ -42,6 +42,28 @@ router.get("/profile/:id", withAuth, async (req, res) => {
     try {
         const userId = req.params.id;
         const currentUserId = req.session.user_id;
+        
+
+        // const follower = await Follow.findAll({ 
+        //     where: { follower_id: userId },
+        //     include: [{
+        //         model: User,
+        //         attributes: ['username']
+        //     }]
+        // });
+
+        const follower = await sequelize.query(
+            `SELECT * FROM follow 
+            JOIN User ON Follow.follower_id = User.id 
+            WHERE followee_id = :userId`,
+            {
+                replacements: { userId: userId }, // Use :userId as a placeholder
+                type: sequelize.QueryTypes.SELECT,
+            }
+        );
+
+        const followers = follower.map((follow) => follow.get({ plain: true }));
+        
 
         const user = await User.findByPk(userId);
         const followed = await Follow.findOne({
@@ -96,6 +118,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
 
         res.render("profile", {
             followed,
+            followers,
             currentUserId,
             userId,
             followee_id: req.params.id,
