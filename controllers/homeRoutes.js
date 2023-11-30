@@ -57,7 +57,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
             JOIN User ON Follow.follower_id = User.id 
             WHERE followee_id = :userId`,
             {
-                replacements: { userId: userId }, // Use :userId as a placeholder
+                replacements: { userId: userId },
                 type: sequelize.QueryTypes.SELECT,
             }
         );
