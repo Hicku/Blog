@@ -412,7 +412,6 @@ if (deleteButton) {
 
 const followModalHandler = async (e) => {
     e.preventDefault();
-    console.log("button clicked")
     const modal = document.querySelector('.follower-modal');
     modal.style.display = "block";
 };
@@ -425,16 +424,15 @@ document.querySelector('.follows-count').addEventListener('click', followModalHa
 
 const closeModalHandler = async (e) => {
     e.preventDefault();
-    console.log("button clicked")
     const modal = document.querySelector('.follower-modal');
     modal.style.display = "none";
 };
 
-document.querySelector('.close-button').addEventListener('click', closeModalHandler);
+document.querySelector('.follower-close-button').addEventListener('click', closeModalHandler);
 
 const modal = document.querySelector('.follower-modal');
 
-const closeOutsdieModalHandler = async (e) => {
+const closeOutsideModalHandler = async (e) => {
     window.onclick = function(e) {
         if (e.target == modal) {
             modal.style.display = "none";
@@ -442,4 +440,38 @@ const closeOutsdieModalHandler = async (e) => {
     }
 }
 
-closeOutsdieModalHandler();
+closeOutsideModalHandler();
+
+// Following modals handler
+
+const followingModalHandler = async (e) => {
+    e.preventDefault();
+    const followingModal = document.querySelector('.following-modal');
+    followingModal.style.display = "block";
+};
+
+
+
+document.querySelector('.following-count').addEventListener('click', followingModalHandler);
+
+
+
+const closeFollowingModalHandler = async (e) => {
+    e.preventDefault();
+    const followingModal = document.querySelector('.following-modal');
+    followingModal.style.display = "none";
+};
+
+document.querySelector('.following-close-button').addEventListener('click', closeFollowingModalHandler);
+
+const followingModal = document.querySelector('.following-modal');
+
+const closeOutsideFollowingModalHandler = async (e) => {
+    window.onclick = function(e) {
+        if (e.target == followingModal) {
+            modal.style.display = "none";
+        }
+    }
+}
+
+closeOutsideFollowingModalHandler();

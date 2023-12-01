@@ -21,26 +21,42 @@
 
     <div class="follower-modal">
         <div class="modal-content">
-            <div class="close-div">
-                <span class="close-button">&times;</span>
+            <div class="follower-close-div">
+                <span class="follower-close-button">&times;</span>
             </div>
-            <div class="content-div">
+            <div class="follower-content-div">
                 <span>Followers</span>
                 {{#each followers as |follower|}}
                     <div class="follower-div">
-                        <a class="model-follower-list text-white" href="/profile/{{follower.id}}"> {{follower.username}}</a>
+                        <a class="modal-follower-list text-white" href="/profile/{{follower.id}}"> {{follower.username}}</a>
                     </div>
                 {{/each}}
             </div>
         </div>
     </div>
 
-    <div class="follows-modal">
+    <div class="following-modal">
+        <div class="following-modal-content">
+            <div class="following-close-div">
+                <span class="following-close-button">&times;</span>
+            </div>
+            <div class="following-content-div">
+                <span>Following</span>
+                {{#each following}}
+                    <div class="following-div">
+                        <a class="modal-following-list text-white" href="/profile/{{this.id}}"> {{this.username}}</a>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- <div class="follow-modal">
         <div class="modal-content">
             <span class="close">hello</span>
             <p>Some text in the Modal..</p>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 

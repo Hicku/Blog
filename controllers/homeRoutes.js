@@ -67,7 +67,6 @@ router.get("/profile/:id", withAuth, async (req, res) => {
                 followee_id: req.params.id,
                 follower_id: req.session.user_id
             }
-        
         });
 
         const is_creator = function (currentUserId, profileUserId) {
@@ -106,6 +105,7 @@ router.get("/profile/:id", withAuth, async (req, res) => {
         res.render("profile", {
             followed,
             followers: currentProfile.followees,
+            following: currentProfile.followers,
             currentUserId,
             userId,
             followee_id: req.params.id,
