@@ -410,19 +410,15 @@ if (deleteButton) {
 
 // Follow modals handler
 
-const followModalHandler = async (e) => {
+const followModalHandler = (e) => {
     e.preventDefault();
     const modal = document.querySelector('.follower-modal');
     modal.style.display = "block";
 };
 
-
-
 document.querySelector('.follows-count').addEventListener('click', followModalHandler);
 
-
-
-const closeModalHandler = async (e) => {
+const closeModalHandler = (e) => {
     e.preventDefault();
     const modal = document.querySelector('.follower-modal');
     modal.style.display = "none";
@@ -432,15 +428,13 @@ document.querySelector('.follower-close-button').addEventListener('click', close
 
 const modal = document.querySelector('.follower-modal');
 
-const closeOutsideModalHandler = async (e) => {
-    window.onclick = function(e) {
-        if (e.target == modal) {
-            modal.style.display = "none";
-        }
+const closeOutsideModalHandler = (e) => {
+    if (e.target == modal) {
+        modal.style.display = "none";
     }
-}
+};
 
-closeOutsideModalHandler();
+document.addEventListener('click', closeOutsideModalHandler);
 
 // Following modals handler
 
@@ -469,7 +463,7 @@ const followingModal = document.querySelector('.following-modal');
 const closeOutsideFollowingModalHandler = async (e) => {
     window.onclick = function(e) {
         if (e.target == followingModal) {
-            modal.style.display = "none";
+            followingModal.style.display = "none";
         }
     }
 }

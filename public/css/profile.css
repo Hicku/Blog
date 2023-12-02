@@ -110,7 +110,18 @@
     overflow: auto; 
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
-    
+}
+
+.follower-modal::-webkit-scrollbar {
+    width: 10px;
+}
+
+.follower-modal::-webkit-scrollbar-thumb {
+    background-color: #333; 
+}
+
+.follower-modal::-webkit-scrollbar-track {
+    background-color: #555; 
 }
 
 .follows-modal {
@@ -130,14 +141,29 @@
 .modal-content {
     background-color: #333;
     color: #aaa;
-    border: 0;
+    border: none !important;
     margin: 15% auto; 
     padding: 5px;
     border: 1px solid #888;
-    width: 30%;
+    width: 20%;
     max-height: 50%;
     min-height: 30%;
     border-radius: 5px;
+    overflow-y: auto;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background-color: #333;
+    border-radius: 5px; 
 }
 
 .follower-content-div {
@@ -168,7 +194,7 @@
 
 .modal-follower-list {
     text-decoration: none;
-    content: #FAF9F6;
+    color: #aaa;;
 }
 
 /* Following modal */
@@ -183,21 +209,38 @@
     height: 100%; 
     overflow: auto; 
     background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    
+    background-color: rgba(0,0,0,0.4);   
 }
+
+
 
 
 .following-modal-content {
     background-color: #333;
     color: #aaa;
-    border: 0;
+    border: none !important;
     margin: 15% auto; 
     padding: 5px;
     border: 1px solid #888;
-    width: 30%;
+    width: 20%;
     max-height: 50%;
     min-height: 30%;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+}
+
+.following-modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.following-modal-content::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.following-modal-content::-webkit-scrollbar-track {
+    background-color: #333;
     border-radius: 5px;
 }
 
@@ -229,5 +272,15 @@
 
 .modal-following-list {
     text-decoration: none;
-    content: #FAF9F6;
+    color: #aaa;;
+}
+
+.following-div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-title {
+    margin-bottom: 20px;
+    font-size: 25px;
 }

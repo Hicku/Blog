@@ -25,10 +25,10 @@
                 <span class="follower-close-button">&times;</span>
             </div>
             <div class="follower-content-div">
-                <span>Followers</span>
+                <span class="modal-title">Followers</span>
                 {{#each followers as |follower|}}
                     <div class="follower-div">
-                        <a class="modal-follower-list text-white" href="/profile/{{follower.id}}"> {{follower.username}}</a>
+                        <a class="modal-follower-list" href="/profile/{{follower.id}}"> {{follower.username}}</a>
                     </div>
                 {{/each}}
             </div>
@@ -41,10 +41,10 @@
                 <span class="following-close-button">&times;</span>
             </div>
             <div class="following-content-div">
-                <span>Following</span>
+                <span class="modal-title">Following</span>
                 {{#each following}}
                     <div class="following-div">
-                        <a class="modal-following-list text-white" href="/profile/{{this.id}}"> {{this.username}}</a>
+                        <a class="modal-following-list" href="/profile/{{this.id}}"> {{this.username}}</a>
                     </div>
                 {{/each}}
             </div>
