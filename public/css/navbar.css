@@ -142,12 +142,17 @@ body {
 
 @media(max-width: 768px) {
 
+    .flexbox-items-navbar-left {
+        justify-content: space-between;
+        width: 100%;
+        margin-right: 30px;
+    }
+
     .flexbox-items-navbar-right {
         display: none;
         position: fixed;
         justify-content: center;
         align-items: center;
-        /* top: 50px; */
         flex-direction: column;
         background-color: #333;
         width: 100%;
@@ -168,6 +173,7 @@ body {
 
     .hamburger {
         display: block;
+        margin-right: 5px;
     }
 
     .profile-link {
