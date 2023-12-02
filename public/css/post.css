@@ -40,6 +40,9 @@
 
 .post-title .post-text {
     color:  #333;
+    text-align: left !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
 }
 
 #delete-button {

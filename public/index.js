@@ -416,7 +416,10 @@ const followModalHandler = (e) => {
     modal.style.display = "block";
 };
 
-document.querySelector('.follows-count').addEventListener('click', followModalHandler);
+const toggleFollowerModal = document.querySelector('.follows-count');
+if (toggleFollowerModal) {
+    toggleFollowerModal.addEventListener('click', followModalHandler);
+};
 
 const closeModalHandler = (e) => {
     e.preventDefault();
@@ -424,7 +427,11 @@ const closeModalHandler = (e) => {
     modal.style.display = "none";
 };
 
-document.querySelector('.follower-close-button').addEventListener('click', closeModalHandler);
+
+const closeFollowerModal = document.querySelector('.follower-close-button');
+if (closeFollowerModal) {
+    closeFollowerModal.addEventListener('click', closeModalHandler);
+};
 
 const modal = document.querySelector('.follower-modal');
 
@@ -444,9 +451,11 @@ const followingModalHandler = async (e) => {
     followingModal.style.display = "block";
 };
 
+const toggleFollowingModal = document.querySelector('.following-count');
+if (toggleFollowingModal) {
+    toggleFollowingModal.addEventListener('click', followingModalHandler);
+};
 
-
-document.querySelector('.following-count').addEventListener('click', followingModalHandler);
 
 
 
@@ -456,7 +465,10 @@ const closeFollowingModalHandler = async (e) => {
     followingModal.style.display = "none";
 };
 
-document.querySelector('.following-close-button').addEventListener('click', closeFollowingModalHandler);
+const closeFollowingModal = document.querySelector('.following-close-button');
+if (closeFollowingModal) {
+    closeFollowingModal.addEventListener('click', closeFollowingModalHandler);
+};
 
 const followingModal = document.querySelector('.following-modal');
 
@@ -469,3 +481,14 @@ const closeOutsideFollowingModalHandler = async (e) => {
 }
 
 closeOutsideFollowingModalHandler();
+
+// hamburger menu handler
+
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".flexbox-items-navbar-right");
+
+hamburger.addEventListener("click", () => {
+    console.log("clicked");
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("active");
+});

@@ -284,3 +284,11 @@
     margin-bottom: 20px;
     font-size: 25px;
 }
+
+@media(max-width: 768px) {
+
+    .post-div {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
