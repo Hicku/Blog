@@ -7,7 +7,7 @@
     background-color: #FAF9F6;
     display: flex;
     justify-content: center;
-    width: 60%;
+    width: 50%;
 }
 
 .post-div {
@@ -286,9 +286,15 @@
 }
 
 @media(max-width: 768px) {
+    .profile-container {
+        width: 100%;
+    }
 
     .post-div {
+        width: 100%;
+    }
+
+    .main-div-post {
         width: 90%;
-        margin: 0 auto;
     }
 }

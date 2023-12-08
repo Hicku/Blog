@@ -121,6 +121,12 @@ body {
     width: 75px;
 }
 
+.hamburger-loggedout {
+    display: none;
+    cursor: pointer;
+    width: 75px;
+}
+
 .hamburger-container {
     display: flex;
     flex-direction: column;
@@ -140,12 +146,16 @@ body {
     background-color: rgb(255, 100, 45);
 }
 
+hamburger-loggedout {
+    margin-left: 100px;
+    background-color: aqua;
+}
+
 @media(max-width: 768px) {
 
-    .flexbox-items-navbar-left {
-        justify-content: space-between;
-        width: 100%;
-        margin-right: 30px;
+
+    #search-form {
+        margin-left: 50px;
     }
 
     .flexbox-items-navbar-right {
@@ -153,10 +163,27 @@ body {
         position: fixed;
         justify-content: center;
         align-items: center;
+        /* top: 50px; */
         flex-direction: column;
         background-color: #333;
         width: 100%;
         height: 150px;
+    }
+
+    .nav-buttons-loggedout {
+        display: none;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        /* top: 50px; */
+        flex-direction: column;
+        background-color: #333;
+        width: 100%;
+        height: 150px;
+    }
+
+    .nav-buttons-loggedout {
+        display: none;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -173,7 +200,6 @@ body {
 
     .hamburger {
         display: block;
-        margin-right: 5px;
     }
 
     .profile-link {
@@ -186,6 +212,10 @@ body {
     }
 
     .flexbox-items-navbar-right.active {
+        display: flex;
+    }
+
+    .flexbox-div-logout.active {
         display: flex;
     }
 }

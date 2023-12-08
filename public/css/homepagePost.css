@@ -1,0 +1,11 @@
+.post-homepage {
+    min-width: 700px;
+}
+
+
+@media(max-width: 768px) {
+    .post-homepage {
+        min-width: 400px;
+    }
+}
+

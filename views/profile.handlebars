@@ -1,82 +1,75 @@
 
-
-<div class="profile-data-div">
-    <h2 class="username-title">{{currentProfile.username}}</h2>
-    <div class="follow-button-element" 
-        data-follower-id={{follower_id}} 
-        data-followee-id={{followee_id}}>
-        {{#if (is_following followed)}}
-            {{#if (is_current_user currentUserId currentProfile.id)}}
+<div class="profile-container">
+    <div class="profile-data-div">
+        <h2 class="username-title">{{currentProfile.username}}</h2>
+        <div class="follow-button-element" 
+            data-follower-id={{follower_id}} 
+            data-followee-id={{followee_id}}>
+            {{#if (is_following followed)}}
+                {{#if (is_current_user currentUserId currentProfile.id)}}
+                {{else}}
+                    <button class="follow-button">Follow</button>
+                {{/if}}
             {{else}}
-                <button class="follow-button">Follow</button>
+                <button class="following-button">Following</button>
             {{/if}}
-        {{else}}
-            <button class="following-button">Following</button>
+        </div>
+        <div>
+            <button  class="follows-count">Followers: {{followerCount}}</span>
+            <button  class="following-count">Following: {{followingCount}}</span>
+        </div>
+
+        <div class="follower-modal">
+            <div class="modal-content">
+                <div class="follower-close-div">
+                    <span class="follower-close-button">&times;</span>
+                </div>
+                <div class="follower-content-div">
+                    <span class="modal-title">Followers</span>
+                    {{#each followers as |follower|}}
+                        <div class="follower-div">
+                            <a class="modal-follower-list" href="/profile/{{follower.id}}"> {{follower.username}}</a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <div class="following-modal">
+            <div class="following-modal-content">
+                <div class="following-close-div">
+                    <span class="following-close-button">&times;</span>
+                </div>
+                <div class="following-content-div">
+                    <span class="modal-title">Following</span>
+                    {{#each following}}
+                        <div class="following-div">
+                            <a class="modal-following-list" href="/profile/{{this.id}}"> {{this.username}}</a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="new-post-div">
+        {{#if (is_creator)}}
+        {{> newPost}}
         {{/if}}
     </div>
-    <div>
-        <button  class="follows-count">Followers: {{followerCount}}</span>
-        <button  class="following-count">Following: {{followingCount}}</span>
-    </div>
 
-    <div class="follower-modal">
-        <div class="modal-content">
-            <div class="follower-close-div">
-                <span class="follower-close-button">&times;</span>
-            </div>
-            <div class="follower-content-div">
-                <span class="modal-title">Followers</span>
-                {{#each followers as |follower|}}
-                    <div class="follower-div">
-                        <a class="modal-follower-list" href="/profile/{{follower.id}}"> {{follower.username}}</a>
-                    </div>
+
+    <div class="post-container" id="postContainer">
+        <div class="main-div-post">
+            <div class="post-div">
+                {{#if posts }}
+                    {{#each posts as |post|}}
+                        {{> post is_current_user=is_current_user currentUserId=../currentUserId currentProfile=../currentProfile}}
                 {{/each}}
+                {{else}}
+                    <p>"They have no posts"</p>
+                {{/if}}
             </div>
-        </div>
-    </div>
-
-    <div class="following-modal">
-        <div class="following-modal-content">
-            <div class="following-close-div">
-                <span class="following-close-button">&times;</span>
-            </div>
-            <div class="following-content-div">
-                <span class="modal-title">Following</span>
-                {{#each following}}
-                    <div class="following-div">
-                        <a class="modal-following-list" href="/profile/{{this.id}}"> {{this.username}}</a>
-                    </div>
-                {{/each}}
-            </div>
-        </div>
-    </div>
-
-    {{!-- <div class="follow-modal">
-        <div class="modal-content">
-            <span class="close">hello</span>
-            <p>Some text in the Modal..</p>
-        </div>
-    </div> --}}
-
-</div>
-
-<div class="new-post-div">
-    {{#if (is_creator)}}
-    {{> newPost}}
-    {{/if}}
-</div>
-
-
-<div class="post-container">
-    <div class="main-div-post">
-        <div class="post-div">
-            {{#if posts }}
-                {{#each posts as |post|}}
-                    {{> post is_current_user=is_current_user currentUserId=../currentUserId currentProfile=../currentProfile}}
-                {{/each}}
-            {{else}}
-                <p>"They have no posts"</p>
-            {{/if}}
         </div>
     </div>
 </div>

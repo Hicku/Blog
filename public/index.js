@@ -1,3 +1,22 @@
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".flexbox-items-navbar-right");
+const navLinksLoggedOut = document.querySelector(".flexbox-div-logout");
+
+hamburger.addEventListener("click", () => {
+    console.log("clicked");
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("active");
+    navLinksLoggedOut.classList.toggle("active");
+});
+
+hamburger.addEventListener("click", () => {
+    console.log("clicked");
+    hamburger.classList.toggle("active");
+    navLinksLoggedOut.classList.toggle("active");
+});
+
+
+
 // New post handler
 
 const postHandler = async (e) => {
@@ -484,11 +503,3 @@ closeOutsideFollowingModalHandler();
 
 // hamburger menu handler
 
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".flexbox-items-navbar-right");
-
-hamburger.addEventListener("click", () => {
-    console.log("clicked");
-    hamburger.classList.toggle("active");
-    navLinks.classList.toggle("active");
-});

@@ -3,3 +3,33 @@
     height: 200px;
     margin-bottom: 60px;
 }
+
+.homepage-container {
+    display: flex;
+    justify-content: center;
+}
+
+.post-container-home {
+    width: 50%
+}
+
+
+@media(max-width: 768px) {
+    @media(max-width: 768px) {
+        .homepage-container {
+            width: 100%;
+        }
+    
+        .post-container-home {
+            width: 100%;
+        }
+    
+        .post-div-home {
+            width: 90%;
+            margin: auto; 
+        }
+    }
+}
+
+
+

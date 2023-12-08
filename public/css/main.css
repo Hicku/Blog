@@ -1,5 +1,6 @@
 body {
     background-color: #FAF9F6;
+    margin: 0;
 }
 
 hr {
@@ -27,4 +28,12 @@ hr {
 
 .text-white {
     color: white;
+}
+
+@media(max-width: 768px) {
+
+    .main-page-container {
+        width: auto;
+    }
+
 }
